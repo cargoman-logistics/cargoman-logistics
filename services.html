@@ -1,65 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Services | Cargoman Logistics</title>
+<meta charset="UTF-8">
+<title>Services – Cargoman Logistics</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body{margin:0;font-family:Arial;}
-.site-header{background:#0f172a;padding:14px 20px;}
-.header-inner{display:flex;justify-content:space-between;align-items:center;}
-.brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:bold;}
-.brand img{height:38px;}
-nav a{color:#cbd5f5;margin-left:16px;text-decoration:none;}
-nav a:hover{color:#fff;}
-.section{padding:40px 20px;}
-.service{margin-bottom:40px;}
-.service img{width:100%;border-radius:6px;margin:10px 0;}
-footer{background:#020617;color:#9ca3af;text-align:center;padding:14px;font-size:12px;}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-    <div class="brand">
-      <img src="assets/images/logo.png">
-      <span>Cargoman Logistics</span>
+<header>
+  <div class="nav">
+    <div class="logo">
+      <img src="assets/images/logo.png"> Cargoman Logistics
     </div>
-    <nav>
+    <div class="menu" id="menu">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-    </nav>
+    </div>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
   </div>
 </header>
 
-<section class="section">
-<h1>Our Services</h1>
-
-<div class="service">
-<h3>Transportation & Freight</h3>
-<img src="assets/images/transport.jpg">
-<p>Reliable and timely freight transportation services.</p>
-</div>
-
-<div class="service">
-<h3>Warehousing Operations</h3>
-<img src="assets/images/warehouse.jpg">
-<p>Structured inbound, outbound, and inventory control operations.</p>
-</div>
-
-<div class="service">
-<h3>Supply Chain Support</h3>
-<img src="assets/images/supply.jpg">
-<img src="assets/images/supply1.jpg">
-<p>End-to-end supply chain coordination and execution.</p>
-</div>
+<section class="message">
+  <h2>Our Services</h2>
+  <p>Transportation, warehousing, distribution, and supply chain execution.</p>
 </section>
 
-<footer>© 2025 Cargoman Logistics</footer>
+<footer>
+  <p>© 2025 Cargoman Logistics</p>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById("menu").classList.toggle("show")}
+</script>
 
 </body>
 </html>
