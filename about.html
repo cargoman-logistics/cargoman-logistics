@@ -4,40 +4,74 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Cargoman Logistics</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+header{background:#0b1f36;color:#fff;position:sticky;top:0}
+.nav{max-width:1200px;margin:auto;padding:12px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:40px}
+.logo span{color:#f57c00;font-weight:bold}
+nav{display:flex;gap:20px}
+nav a{color:#fff;text-decoration:none}
+.menu-btn{display:none;font-size:26px;cursor:pointer}
+
+.about{padding:60px 20px;max-width:1000px;margin:auto;text-align:center}
+.about img{width:100%;max-width:600px;margin:20px auto;border-radius:8px}
+
+footer{background:#0b1f36;color:#fff;text-align:center;padding:15px}
+
+@media(max-width:768px){
+nav{display:none;flex-direction:column;position:absolute;top:60px;right:0;background:#0b1f36;width:200px}
+nav.show{display:flex}
+.menu-btn{display:block}
+}
+</style>
 </head>
+
 <body>
 
-<header class="header">
-  <div class="nav">
-    <div class="brand">
-      <img src="assets/images/logo.png">
-      <span>Cargoman Logistics</span>
-    </div>
-    <div class="menu" onclick="toggleMenu()">☰</div>
-    <nav class="links" id="menuLinks">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
+<header>
+<div class="nav">
+<div class="logo">
+<img src="assets/images/logo.png">
+<span>Cargoman Logistics</span>
+</div>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<nav id="menu">
+<a href="index.html">Home</a>
+<a href="services.html">Services</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</nav>
+</div>
 </header>
 
-<section class="page">
-  <h1>About Cargoman Logistics</h1>
-  <p>
-    Cargoman Logistics is built on discipline, transparency, and operational control.
-    We manage transportation, warehouse execution, and supply chain processes with
-    accuracy and consistency.
-  </p>
-  <p>
-    Our focus is to reduce delays, control costs, and improve end-to-end logistics
-    performance for businesses across India.
-  </p>
+<section class="about">
+<h1>About Cargoman Logistics</h1>
+<p>
+We specialize in transportation, warehousing, and supply chain operations
+built on discipline, accuracy, and reliability.
+</p>
+
+<img src="assets/images/about.jpg">
+
+<p>
+Our mission is to support growing businesses by reducing delays,
+controlling costs, and ensuring operational consistency across logistics workflows.
+</p>
 </section>
 
-<footer>© 2025 Cargoman Logistics</footer>
-<script src="script.js"></script>
+<footer>
+<p>📞 +91 9676537541 | 📧 info@cargomanlogistics.com</p>
+<p>© 2025 Cargoman Logistics</p>
+</footer>
+
+<script>
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("show");
+}
+</script>
+
 </body>
 </html>
