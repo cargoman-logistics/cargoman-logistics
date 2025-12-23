@@ -81,17 +81,19 @@ nav a:hover{background:#123b61}
   cursor:pointer;
 }
 
-.track-result{
+/* SHIPMENT DETAILS */
+.shipment{
   margin-top:15px;
   display:none;
 }
-.step{
+.detail, .step{
   background:#eef3f7;
   padding:10px;
   border-radius:8px;
   margin-bottom:8px;
   font-size:14px;
 }
+.step b{display:block}
 
 /* SERVICES */
 .section{
@@ -137,8 +139,8 @@ footer{
 </nav>
 
 <section class="hero">
-  <h1>Reliable Logistics & Live Tracking</h1>
-  <p>Pan-India transportation, warehousing & supply chain solutions</p>
+  <h1>Reliable Logistics & Shipment Tracking</h1>
+  <p>Transparent, process-driven logistics across India</p>
 </section>
 
 <section class="tracking">
@@ -148,10 +150,15 @@ footer{
     <button onclick="startTracking()">Track</button>
   </div>
 
-  <div class="track-result" id="result">
-    <div class="step" id="stepStatus"></div>
-    <div class="step" id="stepLocation"></div>
-    <div class="step" id="stepTime"></div>
+  <div class="shipment" id="shipmentBox">
+    <div class="detail">
+      <b>Consignment No:</b> <span id="cn"></span><br>
+      <b>From:</b> Hyderabad<br>
+      <b>To:</b> Delhi<br>
+      <b>Booked On:</b> <span id="booked"></span>
+    </div>
+
+    <div id="history"></div>
   </div>
 </section>
 
@@ -185,51 +192,45 @@ function toggleMenu(){
   m.style.display = m.style.display==="flex"?"none":"flex";
 }
 
-/* LIVE TRACKING LOGIC */
-let route = [
-  {status:"📦 Order Confirmed", location:"Hyderabad Hub"},
-  {status:"🚚 Picked Up", location:"Hyderabad Hub"},
-  {status:"🚛 In Transit", location:"Nagpur Hub"},
-  {status:"🏢 At Sorting Hub", location:"Indore Hub"},
-  {status:"📍 Out for Delivery", location:"Delhi Local Hub"},
+const flow = [
+  {status:"📦 Shipment Booked", location:"Hyderabad"},
+  {status:"🚚 Picked Up", location:"Hyderabad"},
+  {status:"🚛 In Transit", location:"Nagpur"},
+  {status:"🏢 Arrived at Hub", location:"Indore"},
+  {status:"📍 Out for Delivery", location:"Delhi"},
   {status:"✅ Delivered", location:"Delhi"}
 ];
-
-let step = 0;
-let interval = null;
 
 function startTracking(){
   const v = document.getElementById("trackInput").value.trim().toUpperCase();
   if(!v.startsWith("KMB")){
-    alert("Invalid Tracking Number. Use format KMB123410");
+    alert("Invalid Tracking Number. Use KMB123410");
     return;
   }
 
-  document.getElementById("result").style.display="block";
-  step = 0;
-  clearInterval(interval);
-  updateTracking();
-  interval = setInterval(updateTracking, 2500);
-}
+  document.getElementById("shipmentBox").style.display="block";
+  document.getElementById("cn").innerText = v;
 
-function updateTracking(){
-  if(step >= route.length){
-    clearInterval(interval);
-    return;
-  }
+  let startDate = new Date();
+  startDate.setDate(startDate.getDate() - 5);
+  document.getElementById("booked").innerText = startDate.toDateString();
 
-  document.getElementById("stepStatus").innerHTML =
-    "<b>Status:</b> " + route[step].status;
+  let historyHTML = "";
+  flow.forEach((s, i) => {
+    let d = new Date(startDate);
+    d.setDate(d.getDate() + i);
+    historyHTML += `
+      <div class="step">
+        <b>${s.status}</b>
+        Location: ${s.location}<br>
+        Date: ${d.toDateString()}
+      </div>
+    `;
+  });
 
-  document.getElementById("stepLocation").innerHTML =
-    "<b>Location:</b> " + route[step].location;
-
-  document.getElementById("stepTime").innerHTML =
-    "<b>Last Update:</b> " + new Date().toLocaleTimeString();
-
-  step++;
+  document.getElementById("history").innerHTML = historyHTML;
 }
 </script>
 
 </body>
-  </html>
+</html>
