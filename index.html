@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cargoman Logistics</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargoman Logistics</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
 
 <header class="header">
-  <div class="nav">
-    <div class="brand">
-      <img src="assets/images/logo.png" alt="Cargoman Logo">
-      <span>Cargoman Logistics</span>
+  <div class="nav-container">
+    <div class="logo">
+      <img src="assets/images/logo.png">
+      <span class="brand">Cargoman Logistics</span>
     </div>
-    <div class="menu" onclick="toggleMenu()">☰</div>
-    <nav class="links" id="menuLinks">
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <nav id="menuLinks">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="about.html">About</a>
@@ -25,39 +26,39 @@
 </header>
 
 <section class="hero">
-  <h1>Smart Logistics Solutions Built for Speed, Scale & Reliability</h1>
-  <p>Transportation, warehousing, and supply chain operations designed for growing businesses.</p>
+  <div class="hero-content">
+    <h1>Smart Logistics Solutions</h1>
+    <p>Transportation, warehousing & supply chain built for reliability.</p>
 
-  <div class="track-box">
-    <input type="text" placeholder="Enter Tracking Number">
-    <button>Track</button>
+    <div class="tracking-box">
+      <input type="text" placeholder="Enter Tracking Number">
+      <button>Track</button>
+    </div>
   </div>
 </section>
 
 <section class="cards">
   <div class="card">
-    <img src="assets/images/hero.jpg">
-    <h4>Transportation Network</h4>
+    <img src="assets/images/transport.jpg">
+    <h3>Transportation</h3>
   </div>
   <div class="card">
     <img src="assets/images/warehouse.jpg">
-    <h4>Warehouse Operations</h4>
+    <h3>Warehousing</h3>
   </div>
   <div class="card">
-    <img src="assets/images/transport.jpg">
-    <h4>Supply Chain Planning</h4>
+    <img src="assets/images/supply.jpg">
+    <h3>Supply Chain</h3>
   </div>
   <div class="card">
-    <img src="assets/images/hero4.jpg">
-    <h4>Reliable Distribution</h4>
+    <img src="assets/images/hero1.jpg">
+    <h3>Reliable Delivery</h3>
   </div>
 </section>
 
 <footer>
-  📞 +91 9676573541 | ✉️ info@cargomanlogistics.com  
-  <br>© 2025 Cargoman Logistics
+  <p>© 2025 Cargoman Logistics | info@cargomanlogistics.com</p>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
