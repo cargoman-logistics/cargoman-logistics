@@ -6,157 +6,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
 body{background:#fff;color:#111}
 
 /* HEADER */
-header{
-  background:#0b1d33;
-  padding:14px 20px;
-}
-.nav{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:#fff;
-  font-weight:bold;
-}
+header{background:#0b1d33;padding:14px 20px}
+.nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;position:relative}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:bold}
 .logo img{height:40px}
 
-.menu{
-  display:flex;
-  gap:18px;
-}
-.menu a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:500;
-}
-.menu-btn{
-  display:none;
-  font-size:26px;
-  color:#fff;
-  cursor:pointer;
-}
+.menu{display:flex;gap:18px}
+.menu a{color:#fff;text-decoration:none;font-weight:500}
+.menu-btn{display:none;font-size:26px;color:#fff;cursor:pointer}
 
 /* HERO */
 .hero{
-  background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-  url("assets/images/hero.jpg") center/cover no-repeat;
-  padding:90px 20px 60px;
-  color:#fff;
+background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("assets/images/hero.jpg") center/cover no-repeat;
+padding:90px 20px 60px;color:#fff
 }
-.hero-inner{
-  max-width:1200px;
-  margin:auto;
-}
-.hero h1{
-  font-size:40px;
-  max-width:700px;
-}
-.hero p{
-  margin-top:15px;
-  font-size:18px;
-  max-width:650px;
-}
+.hero-inner{max-width:1200px;margin:auto}
+.hero h1{font-size:40px;max-width:700px}
+.hero p{margin-top:15px;font-size:18px;max-width:650px}
 
 /* TRACKING */
-.tracking{
-  margin-top:30px;
-  max-width:500px;
-  display:flex;
-}
-.tracking input{
-  flex:1;
-  padding:12px;
-  border:none;
-  outline:none;
-}
-.tracking button{
-  padding:12px 18px;
-  background:#ffb703;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
+.tracking{margin-top:30px;max-width:500px;display:flex}
+.tracking input{flex:1;padding:12px;border:none}
+.tracking button{padding:12px 18px;background:#ffb703;border:none;font-weight:bold}
 
-/* IMAGE BOXES */
-.image-box-section{
-  padding:50px 20px;
-  background:#f4f6fa;
-}
-.image-box-grid{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
-}
-.image-box{
-  border-radius:8px;
-  overflow:hidden;
-  background:#fff;
-}
-.image-box img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-}
-.image-box span{
-  display:block;
-  padding:12px;
-  background:#0b1d33;
-  color:#fff;
-  font-weight:bold;
-  text-align:center;
-}
+/* BOX GRID */
+.section{padding:50px 20px;background:#f4f6fa}
+.grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.box{background:#fff;border-radius:8px;overflow:hidden}
+.box img{width:100%;height:170px;object-fit:cover}
+.box span{display:block;padding:12px;background:#0b1d33;color:#fff;text-align:center;font-weight:bold}
 
 /* MESSAGE */
-.message{
-  padding:60px 20px;
-  text-align:center;
-}
-.message h2{
-  font-size:32px;
-  margin-bottom:15px;
-}
-.message p{
-  max-width:800px;
-  margin:auto;
-  color:#444;
-  font-size:17px;
-}
+.message{padding:60px 20px;text-align:center}
+.message h2{font-size:32px;margin-bottom:15px}
+.message p{max-width:800px;margin:auto;color:#444}
 
 /* FOOTER */
-footer{
-  background:#0b1d33;
-  color:#ccc;
-  text-align:center;
-  padding:18px;
-}
+footer{background:#0b1d33;color:#ccc;text-align:center;padding:18px}
 
 /* MOBILE */
 @media(max-width:768px){
-  .menu{
-    display:none;
-    flex-direction:column;
-    background:#0b1d33;
-    position:absolute;
-    right:20px;
-    top:65px;
-    padding:15px;
-    border-radius:6px;
-  }
-  .menu.show{display:flex}
-  .menu-btn{display:block}
-  .hero h1{font-size:30px}
+.menu{display:none;flex-direction:column;background:#0b1d33;position:absolute;top:65px;right:20px;padding:15px;border-radius:6px}
+.menu.show{display:flex}
+.menu-btn{display:block}
+.hero h1{font-size:30px}
 }
 </style>
 </head>
@@ -186,7 +84,6 @@ footer{
     <h1>Smart Logistics Solutions Built for Speed, Scale & Reliability</h1>
     <p>Transportation, warehousing, and supply chain operations designed for growing businesses.</p>
 
-    <!-- TRACKING -->
     <div class="tracking">
       <input type="text" placeholder="Enter Tracking Number">
       <button>Track</button>
@@ -194,23 +91,27 @@ footer{
   </div>
 </section>
 
-<section class="image-box-section">
-  <div class="image-box-grid">
-    <div class="image-box">
+<section class="section">
+  <div class="grid">
+    <div class="box">
       <img src="assets/images/hero.jpg">
       <span>Transportation Network</span>
     </div>
-    <div class="image-box">
+    <div class="box">
       <img src="assets/images/hero1.jpg">
       <span>Warehouse Operations</span>
     </div>
-    <div class="image-box">
+    <div class="box">
       <img src="assets/images/hero2.jpg">
       <span>Supply Chain Planning</span>
     </div>
-    <div class="image-box">
+    <div class="box">
       <img src="assets/images/hero3.jpg">
       <span>Reliable Distribution</span>
+    </div>
+    <div class="box">
+      <img src="assets/images/hero4.jpg">
+      <span>End-to-End Logistics</span>
     </div>
   </div>
 </section>
@@ -218,9 +119,8 @@ footer{
 <section class="message">
   <h2>Logistics That Moves Business Forward</h2>
   <p>
-    We deliver disciplined execution, operational transparency, and
-    consistent performance across transportation, warehousing, and
-    supply chain services.
+    We focus on disciplined execution, operational transparency,
+    and consistent performance across the supply chain.
   </p>
 </section>
 
