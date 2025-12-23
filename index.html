@@ -1,186 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Cargoman Logistics – Live Tracking</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>Cargoman Logistics</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#f4f6f8;
-}
-
-/* HEADER */
-header{
-  background:#081f3a;
-  color:#fff;
-  padding:15px;
-  text-align:center;
-  font-size:20px;
-  font-weight:bold;
-}
-header span{
-  color:#f57c00;
-}
-
-/* MAIN */
-.container{
-  max-width:520px;
-  margin:30px auto;
-  background:#fff;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.15);
-}
-
-h2{
-  margin-top:0;
-  text-align:center;
-}
-
-/* TRACK INPUT */
-.track-box{
-  display:flex;
-  margin-top:20px;
-}
-.track-box input{
-  flex:1;
-  padding:12px;
-  font-size:16px;
-}
-.track-box button{
-  background:#f57c00;
-  color:#fff;
-  border:none;
-  padding:12px 20px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-/* LIVE TRACKING BOX */
-.live-box{
-  display:none;
-  margin-top:25px;
-}
-
-.progress{
-  width:100%;
-  height:10px;
-  background:#ddd;
-  border-radius:6px;
-  overflow:hidden;
-  margin:15px 0;
-}
-#progressBar{
-  height:100%;
-  width:0%;
-  background:#f57c00;
-  transition:width 1s linear;
-}
-
-.status{
-  background:#f0f3f7;
-  padding:12px;
-  border-radius:8px;
-  margin-bottom:10px;
-}
-
-.status p{
-  margin:6px 0;
-  font-size:15px;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  margin-top:30px;
-  color:#555;
-  font-size:14px;
-}
+body{margin:0;font-family:Arial;background:#f4f6f8}
+header{background:#081f3a;color:#fff;padding:16px;text-align:center;font-size:20px}
+header span{color:#f57c00}
+.hero{background:url('assets/images/hero6.jpg') center/cover;height:320px;display:flex;align-items:center}
+.hero div{background:rgba(0,0,0,.6);color:#fff;padding:30px;width:100%}
+section{max-width:900px;margin:30px auto;background:#fff;padding:30px;border-radius:12px}
+h2{color:#081f3a}
+p{line-height:1.7;color:#444}
+.track{margin-top:20px}
+.track input{padding:12px;width:70%}
+.track button{padding:12px;background:#f57c00;color:#fff;border:none}
+.live{margin-top:20px;display:none}
+.progress{height:8px;background:#ddd;border-radius:6px;overflow:hidden}
+#bar{height:100%;width:0;background:#f57c00}
+footer{text-align:center;color:#555;margin:30px 0}
 </style>
 </head>
 
 <body>
 
-<header>
-  <span>Cargoman</span> Logistics – Live Tracking
-</header>
+<header><span>Cargoman</span> Logistics</header>
 
-<div class="container">
-  <h2>Track Your Shipment</h2>
-  <p style="text-align:center;color:#555">
-    Enter tracking number like <b>KMB123410</b>
-  </p>
-
-  <div class="track-box">
-    <input id="trackingInput" placeholder="KMB123410">
-    <button onclick="startLiveTracking()">Track</button>
-  </div>
-
-  <!-- LIVE TRACKING -->
-  <div id="liveTracking" class="live-box">
-    <div class="progress">
-      <div id="progressBar"></div>
-    </div>
-
-    <div class="status">
-      <p><strong>Status:</strong> <span id="liveStatus"></span></p>
-      <p><strong>Current Location:</strong> <span id="liveLocation"></span></p>
-      <p><strong>Last Update:</strong> <span id="liveTime"></span></p>
-    </div>
+<div class="hero">
+  <div>
+    <h1>Reliable Logistics & Live Tracking</h1>
+    <p>
+      We provide structured logistics operations supported by real-time shipment
+      visibility. Our focus is on accuracy, coordination, and dependable delivery.
+    </p>
   </div>
 </div>
 
-<footer>
-  © 2025 Cargoman Logistics
-</footer>
+<section>
+  <h2>Track Your Shipment</h2>
+  <p>
+    Our live tracking system allows customers to view shipment movement across
+    transit hubs. This demo reflects how shipments typically move in the Indian
+    logistics network.
+  </p>
+
+  <div class="track">
+    <input id="t" placeholder="KMB123410">
+    <button onclick="start()">Track</button>
+  </div>
+
+  <div class="live" id="live">
+    <div class="progress"><div id="bar"></div></div>
+    <p><b>Status:</b> <span id="status"></span></p>
+    <p><b>Location:</b> <span id="loc"></span></p>
+    <p><b>Last Update:</b> <span id="time"></span></p>
+  </div>
+</section>
+
+<section>
+  <h2>Why Cargoman Logistics</h2>
+  <p>
+    We operate with a process-driven approach to logistics. From shipment booking
+    to final delivery, every stage is planned, monitored, and executed by trained
+    teams. Visibility and accountability are central to our operations.
+  </p>
+  <img src="assets/images/hero5.jpg" style="width:100%;border-radius:12px">
+</section>
+
+<footer>© 2025 Cargoman Logistics</footer>
 
 <script>
-let route = [
-  { status:"Order Confirmed", location:"Hyderabad Hub" },
-  { status:"Picked Up", location:"Hyderabad Hub" },
-  { status:"In Transit", location:"Nagpur Hub" },
-  { status:"In Transit", location:"Indore Hub" },
-  { status:"Out for Delivery", location:"Mumbai Local Hub" },
-  { status:"Delivered", location:"Mumbai" }
+let route=[
+ {s:"Order Confirmed",l:"Hyderabad Hub"},
+ {s:"Picked Up",l:"Hyderabad Hub"},
+ {s:"In Transit",l:"Nagpur Hub"},
+ {s:"In Transit",l:"Indore Hub"},
+ {s:"Out for Delivery",l:"Mumbai Hub"},
+ {s:"Delivered",l:"Mumbai"}
 ];
-
-let step = 0;
-let interval;
-
-function startLiveTracking(){
-  const input = document.getElementById("trackingInput").value.trim().toUpperCase();
-
-  if(!input.startsWith("KMB")){
-    alert("Invalid tracking number. Use format KMB123410");
-    return;
-  }
-
-  document.getElementById("liveTracking").style.display="block";
-  document.getElementById("progressBar").style.width="0%";
-
-  step = 0;
-  clearInterval(interval);
-  updateLive();
-  interval = setInterval(updateLive, 3000);
+let i=0,intv;
+function start(){
+ let v=document.getElementById("t").value;
+ if(!v.startsWith("KMB")){alert("Invalid Tracking");return;}
+ document.getElementById("live").style.display="block";
+ i=0;clearInterval(intv);move();
+ intv=setInterval(move,3000);
 }
-
-function updateLive(){
-  if(step >= route.length){
-    clearInterval(interval);
-    return;
-  }
-
-  document.getElementById("liveStatus").innerText = route[step].status;
-  document.getElementById("liveLocation").innerText = route[step].location;
-  document.getElementById("liveTime").innerText = new Date().toLocaleTimeString();
-
-  document.getElementById("progressBar").style.width =
-    ((step+1)/route.length*100) + "%";
-
-  step++;
+function move(){
+ if(i>=route.length){clearInterval(intv);return;}
+ status.innerText=route[i].s;
+ loc.innerText=route[i].l;
+ time.innerText=new Date().toLocaleTimeString();
+ bar.style.width=((i+1)/route.length*100)+"%";
+ i++;
 }
 </script>
 
