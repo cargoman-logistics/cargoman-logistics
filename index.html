@@ -21,28 +21,15 @@ header{
   top:0;
   z-index:1000;
 }
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+.logo{display:flex;align-items:center;gap:10px}
 .logo img{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:#fff;
-  padding:4px;
+  width:44px;height:44px;border-radius:50%;
+  background:#fff;padding:4px
 }
-.logo span{
-  font-size:18px;
-  font-weight:bold;
-}
-.menu-btn{
-  font-size:26px;
-  cursor:pointer;
-}
+.logo span{font-size:18px;font-weight:bold}
+.menu-btn{font-size:26px;cursor:pointer}
 
-/* MOBILE MENU */
+/* MENU */
 nav{
   display:none;
   flex-direction:column;
@@ -70,9 +57,7 @@ nav a:hover{background:#123b61}
 
 /* TRACKING */
 .tracking{
-  background:
-    linear-gradient(rgba(255,255,255,.95),rgba(255,255,255,.95)),
-    url("assets/images/hero4.jpg") center/cover;
+  background:#fff;
   margin:20px;
   padding:20px;
   border-radius:12px;
@@ -81,7 +66,6 @@ nav a:hover{background:#123b61}
 .track-box{
   display:flex;
   gap:8px;
-  margin-top:10px;
 }
 .track-box input{
   flex:1;
@@ -96,6 +80,7 @@ nav a:hover{background:#123b61}
   font-size:16px;
   cursor:pointer;
 }
+
 .track-result{
   margin-top:15px;
   display:none;
@@ -105,6 +90,7 @@ nav a:hover{background:#123b61}
   padding:10px;
   border-radius:8px;
   margin-bottom:8px;
+  font-size:14px;
 }
 
 /* SERVICES */
@@ -128,7 +114,6 @@ footer{
   color:#fff;
   text-align:center;
   padding:15px;
-  margin-top:20px;
   font-size:14px;
 }
 </style>
@@ -138,7 +123,7 @@ footer{
 
 <header>
   <div class="logo">
-    <img src="assets/images/logo.png" alt="Logo">
+    <img src="assets/images/logo.png">
     <span>Cargoman Logistics</span>
   </div>
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
@@ -160,14 +145,13 @@ footer{
   <h2>Track Your Shipment</h2>
   <div class="track-box">
     <input id="trackInput" placeholder="Enter Tracking Number (KMB123410)">
-    <button onclick="track()">Track</button>
+    <button onclick="startTracking()">Track</button>
   </div>
 
   <div class="track-result" id="result">
-    <div class="step" id="s1"></div>
-    <div class="step" id="s2"></div>
-    <div class="step" id="s3"></div>
-    <div class="step" id="s4"></div>
+    <div class="step" id="stepStatus"></div>
+    <div class="step" id="stepLocation"></div>
+    <div class="step" id="stepTime"></div>
   </div>
 </section>
 
@@ -192,7 +176,7 @@ footer{
 </section>
 
 <footer>
-  © 2025 Cargoman Logistics · India  
+  © 2025 Cargoman Logistics · India
 </footer>
 
 <script>
@@ -201,21 +185,49 @@ function toggleMenu(){
   m.style.display = m.style.display==="flex"?"none":"flex";
 }
 
-function track(){
-  let v=document.getElementById("trackInput").value.trim();
+/* LIVE TRACKING LOGIC */
+let route = [
+  {status:"📦 Order Confirmed", location:"Hyderabad Hub"},
+  {status:"🚚 Picked Up", location:"Hyderabad Hub"},
+  {status:"🚛 In Transit", location:"Nagpur Hub"},
+  {status:"🏢 At Sorting Hub", location:"Indore Hub"},
+  {status:"📍 Out for Delivery", location:"Delhi Local Hub"},
+  {status:"✅ Delivered", location:"Delhi"}
+];
+
+let step = 0;
+let interval = null;
+
+function startTracking(){
+  const v = document.getElementById("trackInput").value.trim().toUpperCase();
   if(!v.startsWith("KMB")){
-    alert("Invalid Tracking Number");
+    alert("Invalid Tracking Number. Use format KMB123410");
     return;
   }
+
   document.getElementById("result").style.display="block";
+  step = 0;
+  clearInterval(interval);
+  updateTracking();
+  interval = setInterval(updateTracking, 2500);
+}
 
-  let cities=["Hyderabad","Nagpur","Indore","Delhi"];
-  let today=new Date();
+function updateTracking(){
+  if(step >= route.length){
+    clearInterval(interval);
+    return;
+  }
 
-  document.getElementById("s1").innerHTML="📦 Booked · "+cities[0]+" · "+today.toDateString();
-  document.getElementById("s2").innerHTML="🚚 In Transit · "+cities[1];
-  document.getElementById("s3").innerHTML="🏢 At Hub · "+cities[2];
-  document.getElementById("s4").innerHTML="📍 Out for Delivery · "+cities[3];
+  document.getElementById("stepStatus").innerHTML =
+    "<b>Status:</b> " + route[step].status;
+
+  document.getElementById("stepLocation").innerHTML =
+    "<b>Location:</b> " + route[step].location;
+
+  document.getElementById("stepTime").innerHTML =
+    "<b>Last Update:</b> " + new Date().toLocaleTimeString();
+
+  step++;
 }
 </script>
 
