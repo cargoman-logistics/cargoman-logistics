@@ -6,8 +6,17 @@
 <title>Contact Us | Cargoman Logistics</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
-body{background:#f4f6f8;color:#222}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif
+}
+
+body{
+  background:#f4f6f8;
+  color:#222
+}
 
 /* HEADER */
 header{
@@ -19,14 +28,32 @@ header{
   padding:12px 16px;
   position:sticky;
   top:0;
+  z-index:1000;
 }
-.logo{display:flex;align-items:center;gap:10px}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+
 .logo img{
-  width:44px;height:44px;border-radius:50%;
-  background:#fff;padding:4px
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:#fff;
+  padding:4px
 }
-.logo span{font-size:18px;font-weight:bold}
-.menu-btn{font-size:26px;cursor:pointer}
+
+.logo span{
+  font-size:18px;
+  font-weight:bold
+}
+
+.menu-btn{
+  font-size:26px;
+  cursor:pointer
+}
 
 /* MENU */
 nav{
@@ -34,13 +61,17 @@ nav{
   flex-direction:column;
   background:#0b2a45;
 }
+
 nav a{
   color:#fff;
   text-decoration:none;
   padding:12px 16px;
   border-top:1px solid rgba(255,255,255,.1);
 }
-nav a:hover{background:#123b61}
+
+nav a:hover{
+  background:#123b61
+}
 
 /* HERO */
 .hero{
@@ -51,16 +82,28 @@ nav a:hover{background:#123b61}
   text-align:center;
   color:#fff;
 }
-.hero h1{font-size:26px;margin-bottom:10px}
-.hero p{font-size:15px;opacity:.95}
+
+.hero h1{
+  font-size:26px;
+  margin-bottom:10px
+}
+
+.hero p{
+  font-size:15px;
+  opacity:.95
+}
 
 /* SECTION */
-.section{padding:20px 16px}
+.section{
+  padding:20px 16px
+}
+
 .section h2{
   font-size:22px;
   margin-bottom:10px;
   color:#0b2a45;
 }
+
 .section p{
   font-size:14px;
   color:#555;
@@ -76,8 +119,15 @@ nav a:hover{background:#123b61}
   margin:18px 0;
   box-shadow:0 4px 10px rgba(0,0,0,.08);
 }
-.image-box img{width:100%;display:block}
-.image-box .text{padding:14px}
+
+.image-box img{
+  width:100%;
+  display:block
+}
+
+.image-box .text{
+  padding:14px
+}
 
 /* CONTACT INFO */
 .info{
@@ -87,7 +137,10 @@ nav a:hover{background:#123b61}
   box-shadow:0 4px 8px rgba(0,0,0,.06);
   margin-bottom:18px;
 }
-.info p{margin-bottom:8px}
+
+.info p{
+  margin-bottom:8px
+}
 
 /* FORM */
 input,textarea{
@@ -95,7 +148,10 @@ input,textarea{
   padding:12px;
   margin-bottom:10px;
   font-size:14px;
+  border:1px solid #ccc;
+  border-radius:6px;
 }
+
 button{
   width:100%;
   padding:12px;
@@ -104,6 +160,11 @@ button{
   border:none;
   font-size:16px;
   cursor:pointer;
+  border-radius:6px;
+}
+
+button:hover{
+  background:#d96d00;
 }
 
 /* FOOTER */
@@ -124,6 +185,7 @@ footer{
     <img src="assets/images/logo.png">
     <span>Cargoman Logistics</span>
   </div>
+
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </header>
 
@@ -142,6 +204,7 @@ footer{
 <section class="section">
 
   <h2>Get in Touch</h2>
+
   <p>
     Our customer support and operations team is available to assist with
     shipment tracking, delivery coordination, and general logistics inquiries.
@@ -149,6 +212,7 @@ footer{
 
   <div class="image-box">
     <img src="assets/images/hero5.jpg">
+
     <div class="text">
       <p>
         Whether you are tracking a shipment or planning logistics operations,
@@ -160,15 +224,27 @@ footer{
   <div class="info">
     <p><strong>📍 Location:</strong> India</p>
     <p><strong>📞 Phone:</strong> +91 96765 73541</p>
-    <p><strong>✉ Email:</strong> info@cargomanlogistics.com</p>
+    <p><strong>✉ Email:</strong> cargomanindia@gmail.com</p>
     <p><strong>🕘 Working Hours:</strong> Mon – Sat, 9:00 AM – 6:00 PM</p>
   </div>
 
   <h2>Send Us a Message</h2>
-  <input placeholder="Your Name">
-  <input placeholder="Your Email">
-  <textarea rows="4" placeholder="Your Message"></textarea>
-  <button>Submit Message</button>
+
+  <form action="https://formsubmit.co/cargomanindia@gmail.com" method="POST">
+
+    <input type="hidden" name="_captcha" value="false">
+
+    <input type="hidden" name="_next" value="https://cargoman-logistics.github.io/cargoman-logistics/contact.html">
+
+    <input type="text" name="name" placeholder="Your Name" required>
+
+    <input type="email" name="email" placeholder="Your Email" required>
+
+    <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+
+    <button type="submit">Submit Message</button>
+
+  </form>
 
 </section>
 
@@ -178,8 +254,13 @@ footer{
 
 <script>
 function toggleMenu(){
-  let m=document.getElementById("menu");
-  m.style.display = m.style.display==="flex"?"none":"flex";
+  let m = document.getElementById("menu");
+
+  if(m.style.display === "flex"){
+    m.style.display = "none";
+  } else {
+    m.style.display = "flex";
+  }
 }
 </script>
 
