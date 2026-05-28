@@ -62,7 +62,8 @@ header{
 .menu-btn{
   font-size:28px;
   cursor:pointer;
-  padding:5px;
+  padding:5px 10px;
+  user-select:none;
 }
 
 /* NAVIGATION */
@@ -71,6 +72,7 @@ nav{
   display:none;
   flex-direction:column;
   background:#0b2a45;
+  width:100%;
 }
 
 nav a{
@@ -95,11 +97,20 @@ nav a:hover{
 
 @media(min-width:769px){
 
+  header{
+    padding:14px 30px;
+  }
+
   nav{
     display:flex !important;
     flex-direction:row;
-    justify-content:center;
+    justify-content:flex-end;
     align-items:center;
+    width:auto;
+  }
+
+  nav a{
+    border:none;
   }
 
   .menu-btn{
@@ -116,18 +127,18 @@ nav a:hover{
   url("assets/images/hero.jpg") center/cover;
 
   color:#fff;
-  padding:90px 20px;
+  padding:95px 20px;
   text-align:center;
 }
 
 .hero h1{
-  font-size:30px;
-  margin-bottom:12px;
+  font-size:32px;
+  margin-bottom:14px;
 }
 
 .hero p{
   font-size:16px;
-  line-height:1.6;
+  line-height:1.7;
   opacity:.95;
 }
 
@@ -136,13 +147,13 @@ nav a:hover{
 .tracking{
   background:#fff;
   margin:22px 16px;
-  padding:22px;
+  padding:24px;
   border-radius:16px;
   box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
 
 .tracking h2{
-  margin-bottom:14px;
+  margin-bottom:15px;
   color:#0b2a45;
 }
 
@@ -195,6 +206,20 @@ nav a:hover{
 .step b{
   display:block;
   margin-bottom:4px;
+}
+
+/* STATUS COLORS */
+
+.delivered{
+  border-left:6px solid green;
+}
+
+.transit{
+  border-left:6px solid orange;
+}
+
+.pending{
+  border-left:6px solid red;
 }
 
 /* SERVICES */
@@ -282,7 +307,11 @@ footer{
 
   <a href="contact.html">Contact</a>
 
-  <a href="login.html">Login</a>
+  <a href="login.html" id="loginBtn">Login</a>
+
+  <a href="#" id="profileBtn" style="display:none;">Profile</a>
+
+  <a href="#" id="logoutBtn" style="display:none;" onclick="logout()">Logout</a>
 
 </nav>
 
@@ -302,7 +331,7 @@ footer{
 
   <div class="track-box">
 
-    <input id="trackInput" placeholder="Enter Tracking Number (KMB123410)">
+    <input id="trackInput" placeholder="Enter Tracking Number">
 
     <button onclick="startTracking()">Track</button>
 
@@ -310,25 +339,7 @@ footer{
 
   <div class="shipment" id="shipmentBox">
 
-    <div class="detail">
-
-      <b>Consignment No:</b>
-      <span id="cn"></span>
-
-      <br><br>
-
-      <b>From:</b> Hyderabad
-
-      <br><br>
-
-      <b>To:</b> Delhi
-
-      <br><br>
-
-      <b>Booked On:</b>
-      <span id="booked"></span>
-
-    </div>
+    <div class="detail" id="shipmentDetail"></div>
 
     <div id="history"></div>
 
@@ -347,8 +358,7 @@ footer{
     <h3>Transportation</h3>
 
     <p>
-      Nationwide transportation services with secure cargo movement,
-      shipment delivery and logistics coordination.
+      Nationwide transportation services with secure cargo movement and delivery coordination.
     </p>
 
   </div>
@@ -360,8 +370,7 @@ footer{
     <h3>Warehousing</h3>
 
     <p>
-      Modern warehouse storage solutions with inventory management,
-      dispatch planning and operational visibility.
+      Smart inventory storage, warehouse management and dispatch operations.
     </p>
 
   </div>
@@ -373,8 +382,7 @@ footer{
     <h3>Supply Chain Management</h3>
 
     <p>
-      End-to-end supply chain planning, shipment coordination and
-      optimized logistics execution for businesses.
+      End-to-end logistics planning and optimized shipment execution solutions.
     </p>
 
   </div>
@@ -413,53 +421,98 @@ navLinks.forEach(link => {
 
 });
 
-/* TRACKING SYSTEM */
+/* LOGIN STATE */
 
-const flow = [
+if(localStorage.getItem("loggedIn") === "true"){
 
-  {
-    status:"📦 Shipment Booked",
-    location:"Hyderabad"
+  document.getElementById("loginBtn").style.display = "none";
+
+  document.getElementById("profileBtn").style.display = "block";
+
+  document.getElementById("logoutBtn").style.display = "block";
+
+}
+
+/* LOGOUT */
+
+function logout(){
+
+  localStorage.removeItem("loggedIn");
+
+  alert("Logged Out Successfully");
+
+  window.location.href = "index.html";
+
+}
+
+/* MULTI TRACKING DATABASE */
+
+const trackingDB = {
+
+  "KMB1001": {
+
+    from:"Hyderabad",
+    to:"Delhi",
+    status:"Delivered",
+    class:"delivered",
+
+    flow:[
+      "📦 Shipment Booked - Hyderabad",
+      "🚚 Picked Up - Hyderabad",
+      "🚛 In Transit - Nagpur",
+      "🏢 Arrived at Hub - Delhi",
+      "✅ Delivered - Delhi"
+    ]
+
   },
 
-  {
-    status:"🚚 Picked Up",
-    location:"Hyderabad"
+  "KMB1002": {
+
+    from:"Mumbai",
+    to:"Bangalore",
+    status:"In Transit",
+    class:"transit",
+
+    flow:[
+      "📦 Shipment Booked - Mumbai",
+      "🚚 Picked Up - Mumbai",
+      "🚛 In Transit - Pune",
+      "🚛 Moving to Bangalore"
+    ]
+
   },
 
-  {
-    status:"🚛 In Transit",
-    location:"Nagpur"
-  },
+  "KMB1003": {
 
-  {
-    status:"🏢 Arrived at Hub",
-    location:"Indore"
-  },
+    from:"Chennai",
+    to:"Kolkata",
+    status:"Pending",
+    class:"pending",
 
-  {
-    status:"📍 Out for Delivery",
-    location:"Delhi"
-  },
+    flow:[
+      "📦 Shipment Booked - Chennai",
+      "⏳ Awaiting Dispatch - Chennai"
+    ]
 
-  {
-    status:"✅ Delivered",
-    location:"Delhi"
   }
 
-];
+};
+
+/* TRACKING SYSTEM */
 
 function startTracking(){
 
-  const v =
+  const id =
   document.getElementById("trackInput")
   .value
   .trim()
   .toUpperCase();
 
-  if(!v.startsWith("KMB")){
+  const data = trackingDB[id];
 
-    alert("Invalid Tracking Number. Use KMB123410");
+  if(!data){
+
+    alert("Tracking Number Not Found");
 
     return;
 
@@ -467,34 +520,37 @@ function startTracking(){
 
   document.getElementById("shipmentBox").style.display = "block";
 
-  document.getElementById("cn").innerText = v;
+  document.getElementById("shipmentDetail").innerHTML = `
 
-  let startDate = new Date();
+    <div class="${data.class} detail">
 
-  startDate.setDate(startDate.getDate() - 5);
+      <b>Tracking ID:</b> ${id}
 
-  document.getElementById("booked").innerText =
-  startDate.toDateString();
+      <br><br>
+
+      <b>From:</b> ${data.from}
+
+      <br><br>
+
+      <b>To:</b> ${data.to}
+
+      <br><br>
+
+      <b>Status:</b> ${data.status}
+
+    </div>
+
+  `;
 
   let historyHTML = "";
 
-  flow.forEach((s, i) => {
-
-    let d = new Date(startDate);
-
-    d.setDate(d.getDate() + i);
+  data.flow.forEach(step => {
 
     historyHTML += `
 
       <div class="step">
 
-        <b>${s.status}</b>
-
-        Location: ${s.location}
-
-        <br><br>
-
-        Date: ${d.toDateString()}
+        <b>${step}</b>
 
       </div>
 
