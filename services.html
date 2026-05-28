@@ -6,154 +6,363 @@
 <title>Services | Cargoman Logistics</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
-body{background:#f4f6f8;color:#222}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#f4f6f8;
+  color:#222;
+}
 
 /* HEADER */
+
 header{
   background:#0b2a45;
   color:#fff;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 16px;
+  padding:14px 18px;
   position:sticky;
   top:0;
+  z-index:1000;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
-.logo{display:flex;align-items:center;gap:10px}
-.logo img{
-  width:44px;height:44px;border-radius:50%;
-  background:#fff;padding:4px
-}
-.logo span{font-size:18px;font-weight:bold}
-.menu-btn{font-size:26px;cursor:pointer}
 
-/* MENU */
+/* LOGO */
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:white;
+}
+
+.logo img{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:#fff;
+  padding:4px;
+}
+
+.logo span{
+  font-size:19px;
+  font-weight:bold;
+}
+
+/* MENU BUTTON */
+
+.menu-btn{
+  font-size:28px;
+  cursor:pointer;
+  padding:5px 10px;
+  user-select:none;
+}
+
+/* NAVIGATION */
+
 nav{
   display:none;
   flex-direction:column;
   background:#0b2a45;
+  width:100%;
 }
+
 nav a{
   color:#fff;
   text-decoration:none;
-  padding:12px 16px;
+  padding:14px 18px;
   border-top:1px solid rgba(255,255,255,.1);
+  transition:0.3s;
 }
-nav a:hover{background:#123b61}
+
+nav a:hover{
+  background:#123b61;
+}
+
+/* MOBILE MENU */
+
+#menu.show{
+  display:flex;
+}
+
+/* DESKTOP MENU */
+
+@media(min-width:769px){
+
+  header{
+    padding:14px 30px;
+  }
+
+  nav{
+    display:flex !important;
+    flex-direction:row;
+    justify-content:flex-end;
+    align-items:center;
+    width:auto;
+  }
+
+  nav a{
+    border:none;
+  }
+
+  .menu-btn{
+    display:none;
+  }
+
+}
 
 /* HERO */
+
 .hero{
   background:
-    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-    url("assets/images/warehouse.jpg") center/cover;
-  padding:60px 16px;
+  linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+  url("assets/images/hero.jpg") center/cover;
+
+  padding:90px 20px;
   text-align:center;
   color:#fff;
 }
-.hero h1{font-size:26px;margin-bottom:8px}
-.hero p{font-size:15px;opacity:.9}
 
-/* CONTENT */
-.section{padding:20px 16px}
+.hero h1{
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.hero p{
+  font-size:16px;
+  line-height:1.7;
+  opacity:.95;
+}
+
+/* SECTION */
+
+.section{
+  padding:24px 16px;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:24px;
+  color:#0b2a45;
+  font-size:28px;
+}
+
+/* CARDS */
+
 .card{
   background:#fff;
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
-  margin-bottom:20px;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  margin-bottom:24px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  transition:0.3s;
 }
-.card img{width:100%;display:block}
-.card h3{padding:12px;font-size:18px}
+
+.card:hover{
+  transform:translateY(-4px);
+}
+
+.card img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  display:block;
+}
+
+.card h3{
+  padding:16px 16px 8px;
+  font-size:20px;
+  color:#0b2a45;
+}
+
 .card p{
-  padding:0 12px 14px;
+  padding:0 16px 18px;
   font-size:14px;
   color:#555;
+  line-height:1.7;
 }
 
 /* FOOTER */
+
 footer{
   background:#0b2a45;
   color:#fff;
   text-align:center;
-  padding:14px;
+  padding:18px;
   font-size:14px;
+  margin-top:20px;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">
+
+  <a href="index.html" class="logo">
+
     <img src="assets/images/logo.png">
+
     <span>Cargoman Logistics</span>
-  </div>
+
+  </a>
+
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
 </header>
 
 <nav id="menu">
+
   <a href="index.html">Home</a>
+
   <a href="services.html">Services</a>
+
   <a href="about.html">About</a>
+
   <a href="contact.html">Contact</a>
+
+  <a href="login.html" id="loginBtn">Login</a>
+
+  <a href="#" id="profileBtn" style="display:none;">Profile</a>
+
+  <a href="#" id="logoutBtn" style="display:none;" onclick="logout()">Logout</a>
+
 </nav>
 
 <section class="hero">
+
   <h1>Our Logistics Services</h1>
-  <p>Reliable operations built for Indian supply chains</p>
+
+  <p>
+    Smart logistics operations built for fast, reliable and scalable supply chains across India.
+  </p>
+
 </section>
 
 <section class="section">
 
+  <h2 class="section-title">What We Provide</h2>
+
   <div class="card">
-    <img src="assets/images/logs.jpg">
+
+    <img src="assets/images/transportation.jpg">
+
     <h3>Transportation Network</h3>
+
     <p>
-      Pan-India road transportation with scheduled routes, hub-to-hub
-      movement and dependable last-mile delivery.
+      Nationwide cargo transportation with secure shipment movement,
+      route planning, delivery coordination and dependable last-mile logistics support.
     </p>
+
   </div>
 
   <div class="card">
-    <img src="assets/images/warehouse1.jpg">
-    <h3>Warehouse Operations</h3>
-    <p>
-      Inventory management, palletization, order picking, dispatch
-      planning and real-time stock visibility.
-    </p>
-  </div>
 
-  <div class="card">
-    <img src="assets/images/production.jpg">
-    <h3>Supply Chain Planning</h3>
-    <p>
-      Route optimization, SLA management, demand forecasting and
-      process standardization to reduce cost and delays.
-    </p>
-  </div>
-
-  <div class="card">
     <img src="assets/images/warehouse.jpg">
-    <h3>Fleet Management</h3>
+
+    <h3>Warehouse Operations</h3>
+
     <p>
-      GPS-enabled vehicles, preventive maintenance, driver compliance
-      and safety monitoring for uninterrupted delivery.
+      Organized warehouse management including inventory storage,
+      pallet handling, dispatch coordination and operational visibility systems.
     </p>
+
+  </div>
+
+  <div class="card">
+
+    <img src="assets/images/supplychain.jpg">
+
+    <h3>Supply Chain Management</h3>
+
+    <p>
+      End-to-end logistics planning, shipment coordination,
+      process optimization and supply chain execution for modern businesses.
+    </p>
+
+  </div>
+
+  <div class="card">
+
+    <img src="assets/images/fleet.jpg">
+
+    <h3>Fleet Management</h3>
+
+    <p>
+      GPS-enabled vehicle monitoring, driver coordination,
+      route tracking and fleet maintenance management for uninterrupted operations.
+    </p>
+
   </div>
 
 </section>
 
 <footer>
+
   © 2025 Cargoman Logistics · All Rights Reserved
+
 </footer>
 
 <script>
+
+/* MOBILE MENU */
+
 function toggleMenu(){
-  let m=document.getElementById("menu");
-  m.style.display = m.style.display==="flex"?"none":"flex";
+
+  const menu = document.getElementById("menu");
+
+  menu.classList.toggle("show");
+
 }
+
+/* AUTO CLOSE MENU */
+
+const navLinks = document.querySelectorAll("#menu a");
+
+navLinks.forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    document.getElementById("menu").classList.remove("show");
+
+  });
+
+});
+
+/* LOGIN STATE */
+
+if(localStorage.getItem("loggedIn") === "true"){
+
+  document.getElementById("loginBtn").style.display = "none";
+
+  document.getElementById("profileBtn").style.display = "block";
+
+  document.getElementById("logoutBtn").style.display = "block";
+
+}
+
+/* LOGOUT */
+
+function logout(){
+
+  localStorage.removeItem("loggedIn");
+
+  alert("Logged Out Successfully");
+
+  window.location.href = "index.html";
+
+}
+
 </script>
 
 </body>
-  </html></html>
+</html>
