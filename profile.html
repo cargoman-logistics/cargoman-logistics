@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile | Cargoman Logistics</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f4f6f9;
+  color:#222;
+}
+
+/* HEADER */
+
+header{
+  background:#0b2a45;
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 18px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* LOGO */
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:white;
+}
+
+.logo img{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:white;
+  padding:4px;
+}
+
+.logo span{
+  font-size:19px;
+  font-weight:bold;
+}
+
+/* MENU BUTTON */
+
+.menu-btn{
+  font-size:28px;
+  cursor:pointer;
+  padding:5px 10px;
+  user-select:none;
+}
+
+/* NAVIGATION */
+
+nav{
+  display:none;
+  flex-direction:column;
+  background:#0b2a45;
+  width:100%;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  padding:14px 18px;
+  border-top:1px solid rgba(255,255,255,0.1);
+  transition:0.3s;
+}
+
+nav a:hover{
+  background:#123b61;
+}
+
+/* MOBILE MENU */
+
+#menu.show{
+  display:flex;
+}
+
+/* DESKTOP MENU */
+
+@media(min-width:769px){
+
+  header{
+    padding:14px 30px;
+  }
+
+  nav{
+    display:flex !important;
+    flex-direction:row;
+    justify-content:flex-end;
+    align-items:center;
+    width:auto;
+  }
+
+  nav a{
+    border:none;
+  }
+
+  .menu-btn{
+    display:none;
+  }
+
+}
+
+/* PROFILE SECTION */
+
+.container{
+  padding:28px 18px;
+}
+
+.profile-card{
+  background:white;
+  border-radius:18px;
+  padding:28px 22px;
+  box-shadow:0 5px 16px rgba(0,0,0,0.08);
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.profile-image{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#0b2a45;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  font-size:34px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+.profile-card h1{
+  color:#0b2a45;
+  margin-bottom:10px;
+}
+
+.profile-card p{
+  color:#666;
+  line-height:1.7;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+  display:grid;
+  gap:18px;
+}
+
+.box{
+  background:white;
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.box h3{
+  color:#0b2a45;
+  margin-bottom:12px;
+}
+
+.box p{
+  color:#555;
+  line-height:1.7;
+}
+
+/* STATUS */
+
+.status{
+  color:green;
+  font-weight:bold;
+}
+
+/* BUTTON */
+
+.logout-btn{
+  margin-top:20px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:8px;
+  background:#f57c00;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.logout-btn:hover{
+  background:#d96b00;
+}
+
+/* FOOTER */
+
+footer{
+  background:#0b2a45;
+  color:white;
+  text-align:center;
+  padding:18px;
+  margin-top:30px;
+  font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <a href="index.html" class="logo">
+
+    <img src="assets/images/logo.png">
+
+    <span>Cargoman Logistics</span>
+
+  </a>
+
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+</header>
+
+<nav id="menu">
+
+  <a href="index.html">Home</a>
+
+  <a href="services.html">Services</a>
+
+  <a href="about.html">About</a>
+
+  <a href="contact.html">Contact</a>
+
+  <a href="profile.html">Profile</a>
+
+  <a href="#" onclick="logout()">Logout</a>
+
+</nav>
+
+<div class="container">
+
+  <div class="profile-card">
+
+    <div class="profile-image">
+      A
+    </div>
+
+    <h1>Admin Dashboard</h1>
+
+    <p>
+      Welcome to the Cargoman Logistics management portal.
+    </p>
+
+  </div>
+
+  <div class="dashboard">
+
+    <div class="box">
+
+      <h3>Account Status</h3>
+
+      <p class="status">
+        Active
+      </p>
+
+    </div>
+
+    <div class="box">
+
+      <h3>Role</h3>
+
+      <p>
+        Logistics Administrator
+      </p>
+
+    </div>
+
+    <div class="box">
+
+      <h3>Tracking Database</h3>
+
+      <p>
+        Multi-shipment tracking system operational.
+      </p>
+
+    </div>
+
+    <div class="box">
+
+      <h3>System Status</h3>
+
+      <p>
+        Website systems running normally.
+      </p>
+
+    </div>
+
+  </div>
+
+  <button class="logout-btn" onclick="logout()">
+    Logout
+  </button>
+
+</div>
+
+<footer>
+
+  © 2025 Cargoman Logistics · All Rights Reserved
+
+</footer>
+
+<script>
+
+/* CHECK LOGIN */
+
+if(localStorage.getItem("loggedIn") !== "true"){
+
+  alert("Please Login First");
+
+  window.location.href = "login.html";
+
+}
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+  const menu = document.getElementById("menu");
+
+  menu.classList.toggle("show");
+
+}
+
+/* AUTO CLOSE MENU */
+
+const navLinks = document.querySelectorAll("#menu a");
+
+navLinks.forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    document.getElementById("menu").classList.remove("show");
+
+  });
+
+});
+
+/* LOGOUT */
+
+function logout(){
+
+  localStorage.removeItem("loggedIn");
+
+  alert("Logged Out Successfully");
+
+  window.location.href = "login.html";
+
+}
+
+</script>
+
+</body>
+</html>
