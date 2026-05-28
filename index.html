@@ -6,132 +6,273 @@
 <title>Cargoman Logistics</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
-body{background:#f4f6f8;color:#222}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#f4f6f8;
+  color:#222;
+}
 
 /* HEADER */
+
 header{
   background:#0b2a45;
   color:#fff;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:12px 16px;
+  padding:14px 18px;
   position:sticky;
   top:0;
   z-index:1000;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
-.logo{display:flex;align-items:center;gap:10px}
-.logo img{
-  width:44px;height:44px;border-radius:50%;
-  background:#fff;padding:4px
-}
-.logo span{font-size:18px;font-weight:bold}
-.menu-btn{font-size:26px;cursor:pointer}
 
-/* MENU */
+/* LOGO */
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:white;
+}
+
+.logo img{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:#fff;
+  padding:4px;
+}
+
+.logo span{
+  font-size:19px;
+  font-weight:bold;
+}
+
+/* MENU BUTTON */
+
+.menu-btn{
+  font-size:28px;
+  cursor:pointer;
+  padding:5px;
+}
+
+/* NAVIGATION */
+
 nav{
   display:none;
   flex-direction:column;
   background:#0b2a45;
 }
+
 nav a{
   color:#fff;
   text-decoration:none;
-  padding:12px 16px;
+  padding:14px 18px;
   border-top:1px solid rgba(255,255,255,.1);
+  transition:0.3s;
 }
-nav a:hover{background:#123b61}
+
+nav a:hover{
+  background:#123b61;
+}
+
+/* MOBILE MENU */
+
+#menu.show{
+  display:flex;
+}
+
+/* DESKTOP MENU */
+
+@media(min-width:769px){
+
+  nav{
+    display:flex !important;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+  }
+
+  .menu-btn{
+    display:none;
+  }
+
+}
 
 /* HERO */
+
 .hero{
   background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-    url("assets/images/hero6.jpg") center/cover;
+  linear-gradient(rgba(0,0,0,.60),rgba(0,0,0,.60)),
+  url("assets/images/hero.jpg") center/cover;
+
   color:#fff;
-  padding:60px 16px;
+  padding:90px 20px;
   text-align:center;
 }
-.hero h1{font-size:26px;margin-bottom:10px}
-.hero p{font-size:15px;opacity:.9}
+
+.hero h1{
+  font-size:30px;
+  margin-bottom:12px;
+}
+
+.hero p{
+  font-size:16px;
+  line-height:1.6;
+  opacity:.95;
+}
 
 /* TRACKING */
+
 .tracking{
   background:#fff;
-  margin:20px;
-  padding:20px;
-  border-radius:12px;
+  margin:22px 16px;
+  padding:22px;
+  border-radius:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
-.tracking h2{margin-bottom:10px}
+
+.tracking h2{
+  margin-bottom:14px;
+  color:#0b2a45;
+}
+
 .track-box{
   display:flex;
-  gap:8px;
+  gap:10px;
+  flex-wrap:wrap;
 }
+
 .track-box input{
   flex:1;
-  padding:12px;
-  font-size:16px;
+  min-width:200px;
+  padding:14px;
+  font-size:15px;
+  border:1px solid #ccc;
+  border-radius:8px;
 }
+
 .track-box button{
   background:#ff8c00;
   border:none;
   color:#fff;
-  padding:12px 18px;
-  font-size:16px;
+  padding:14px 20px;
+  font-size:15px;
   cursor:pointer;
+  border-radius:8px;
+  transition:0.3s;
+}
+
+.track-box button:hover{
+  background:#e67600;
 }
 
 /* SHIPMENT DETAILS */
+
 .shipment{
-  margin-top:15px;
+  margin-top:18px;
   display:none;
 }
-.detail, .step{
+
+.detail,
+.step{
   background:#eef3f7;
-  padding:10px;
-  border-radius:8px;
-  margin-bottom:8px;
+  padding:14px;
+  border-radius:10px;
+  margin-bottom:10px;
   font-size:14px;
 }
-.step b{display:block}
+
+.step b{
+  display:block;
+  margin-bottom:4px;
+}
 
 /* SERVICES */
+
 .section{
-  padding:20px 16px;
+  padding:22px 16px;
 }
+
+.section-title{
+  text-align:center;
+  margin-bottom:22px;
+  color:#0b2a45;
+  font-size:28px;
+}
+
 .card{
   background:#fff;
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
-  margin-bottom:20px;
-  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  margin-bottom:22px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  transition:0.3s;
 }
-.card img{width:100%;display:block}
-.card h3{padding:12px}
-.card p{padding:0 12px 14px;font-size:14px;color:#555}
+
+.card:hover{
+  transform:translateY(-4px);
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+}
+
+.card h3{
+  padding:14px 14px 8px;
+  color:#0b2a45;
+}
+
+.card p{
+  padding:0 14px 18px;
+  font-size:14px;
+  color:#555;
+  line-height:1.6;
+}
 
 /* FOOTER */
+
 footer{
   background:#0b2a45;
   color:#fff;
   text-align:center;
-  padding:15px;
+  padding:18px;
   font-size:14px;
+  margin-top:25px;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">
+
+  <a href="index.html" class="logo">
+
     <img src="assets/images/logo.png">
+
     <span>Cargoman Logistics</span>
-  </div>
+
+  </a>
+
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
 </header>
 
-  <nav id="menu">
+<nav id="menu">
 
   <a href="index.html">Home</a>
 
@@ -146,97 +287,225 @@ footer{
 </nav>
 
 <section class="hero">
+
   <h1>Reliable Logistics & Shipment Tracking</h1>
-  <p>Transparent, process-driven logistics across India</p>
+
+  <p>
+    Fast, transparent and process-driven logistics services across India.
+  </p>
+
 </section>
 
 <section class="tracking">
+
   <h2>Track Your Shipment</h2>
+
   <div class="track-box">
+
     <input id="trackInput" placeholder="Enter Tracking Number (KMB123410)">
+
     <button onclick="startTracking()">Track</button>
+
   </div>
 
   <div class="shipment" id="shipmentBox">
+
     <div class="detail">
-      <b>Consignment No:</b> <span id="cn"></span><br>
-      <b>From:</b> Hyderabad<br>
-      <b>To:</b> Delhi<br>
-      <b>Booked On:</b> <span id="booked"></span>
+
+      <b>Consignment No:</b>
+      <span id="cn"></span>
+
+      <br><br>
+
+      <b>From:</b> Hyderabad
+
+      <br><br>
+
+      <b>To:</b> Delhi
+
+      <br><br>
+
+      <b>Booked On:</b>
+      <span id="booked"></span>
+
     </div>
 
     <div id="history"></div>
+
   </div>
+
 </section>
 
 <section class="section">
+
+  <h2 class="section-title">Our Services</h2>
+
   <div class="card">
-    <img src="assets/images/logs.jpg">
+
+    <img src="assets/images/transportation.jpg">
+
     <h3>Transportation</h3>
-    <p>Hub-to-hub and last-mile road transportation across India.</p>
+
+    <p>
+      Nationwide transportation services with secure cargo movement,
+      shipment delivery and logistics coordination.
+    </p>
+
   </div>
 
   <div class="card">
-    <img src="assets/images/warehouse1.jpg">
+
+    <img src="assets/images/warehouse.jpg">
+
     <h3>Warehousing</h3>
-    <p>Inventory control, dispatch planning and real-time visibility.</p>
+
+    <p>
+      Modern warehouse storage solutions with inventory management,
+      dispatch planning and operational visibility.
+    </p>
+
   </div>
 
   <div class="card">
-    <img src="assets/images/production.jpg">
-    <h3>Supply Chain</h3>
-    <p>End-to-end supply chain execution with process discipline.</p>
+
+    <img src="assets/images/supplychain.jpg">
+
+    <h3>Supply Chain Management</h3>
+
+    <p>
+      End-to-end supply chain planning, shipment coordination and
+      optimized logistics execution for businesses.
+    </p>
+
   </div>
+
 </section>
 
 <footer>
+
   © 2025 Cargoman Logistics · India
+
 </footer>
 
 <script>
+
+/* MOBILE MENU */
+
 function toggleMenu(){
-  let m=document.getElementById("menu");
-  m.style.display = m.style.display==="flex"?"none":"flex";
+
+  const menu = document.getElementById("menu");
+
+  menu.classList.toggle("show");
+
 }
 
+/* AUTO CLOSE MENU */
+
+const navLinks = document.querySelectorAll("#menu a");
+
+navLinks.forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    document.getElementById("menu").classList.remove("show");
+
+  });
+
+});
+
+/* TRACKING SYSTEM */
+
 const flow = [
-  {status:"📦 Shipment Booked", location:"Hyderabad"},
-  {status:"🚚 Picked Up", location:"Hyderabad"},
-  {status:"🚛 In Transit", location:"Nagpur"},
-  {status:"🏢 Arrived at Hub", location:"Indore"},
-  {status:"📍 Out for Delivery", location:"Delhi"},
-  {status:"✅ Delivered", location:"Delhi"}
+
+  {
+    status:"📦 Shipment Booked",
+    location:"Hyderabad"
+  },
+
+  {
+    status:"🚚 Picked Up",
+    location:"Hyderabad"
+  },
+
+  {
+    status:"🚛 In Transit",
+    location:"Nagpur"
+  },
+
+  {
+    status:"🏢 Arrived at Hub",
+    location:"Indore"
+  },
+
+  {
+    status:"📍 Out for Delivery",
+    location:"Delhi"
+  },
+
+  {
+    status:"✅ Delivered",
+    location:"Delhi"
+  }
+
 ];
 
 function startTracking(){
-  const v = document.getElementById("trackInput").value.trim().toUpperCase();
+
+  const v =
+  document.getElementById("trackInput")
+  .value
+  .trim()
+  .toUpperCase();
+
   if(!v.startsWith("KMB")){
+
     alert("Invalid Tracking Number. Use KMB123410");
+
     return;
+
   }
 
-  document.getElementById("shipmentBox").style.display="block";
+  document.getElementById("shipmentBox").style.display = "block";
+
   document.getElementById("cn").innerText = v;
 
   let startDate = new Date();
+
   startDate.setDate(startDate.getDate() - 5);
-  document.getElementById("booked").innerText = startDate.toDateString();
+
+  document.getElementById("booked").innerText =
+  startDate.toDateString();
 
   let historyHTML = "";
+
   flow.forEach((s, i) => {
+
     let d = new Date(startDate);
+
     d.setDate(d.getDate() + i);
+
     historyHTML += `
+
       <div class="step">
+
         <b>${s.status}</b>
-        Location: ${s.location}<br>
+
+        Location: ${s.location}
+
+        <br><br>
+
         Date: ${d.toDateString()}
+
       </div>
+
     `;
+
   });
 
   document.getElementById("history").innerHTML = historyHTML;
+
 }
+
 </script>
 
 </body>
