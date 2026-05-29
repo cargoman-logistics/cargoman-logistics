@@ -8,248 +8,231 @@
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:#f4f6f9;
-  color:#222;
+background:#f4f6f9;
+color:#222;
 }
 
 /* HEADER */
 
 header{
-  background:#0b2a45;
-  color:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 18px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+background:#0b2a45;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
-/* LOGO */
-
 .logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-  color:white;
+display:flex;
+align-items:center;
+gap:10px;
+text-decoration:none;
+color:white;
 }
 
 .logo img{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:white;
-  padding:4px;
+width:50px;
+height:50px;
+border-radius:50%;
+background:white;
+padding:4px;
 }
 
 .logo span{
-  font-size:19px;
-  font-weight:bold;
+font-size:20px;
+font-weight:bold;
 }
-
-/* MENU BUTTON */
 
 .menu-btn{
-  font-size:28px;
-  cursor:pointer;
-  padding:5px 10px;
-  user-select:none;
+font-size:28px;
+cursor:pointer;
 }
 
-/* NAVIGATION */
+/* MENU */
 
 nav{
-  display:none;
-  flex-direction:column;
-  background:#0b2a45;
-  width:100%;
+display:none;
+flex-direction:column;
+background:#0b2a45;
 }
 
 nav a{
-  color:white;
-  text-decoration:none;
-  padding:14px 18px;
-  border-top:1px solid rgba(255,255,255,0.1);
-  transition:0.3s;
+color:white;
+text-decoration:none;
+padding:14px 20px;
+border-top:1px solid rgba(255,255,255,.1);
 }
 
 nav a:hover{
-  background:#123b61;
+background:#123b61;
 }
-
-/* MOBILE MENU */
 
 #menu.show{
-  display:flex;
-}
-
-/* DESKTOP MENU */
-
-@media(min-width:769px){
-
-  header{
-    padding:14px 30px;
-  }
-
-  nav{
-    display:flex !important;
-    flex-direction:row;
-    justify-content:flex-end;
-    align-items:center;
-    width:auto;
-  }
-
-  nav a{
-    border:none;
-  }
-
-  .menu-btn{
-    display:none;
-  }
-
+display:flex;
 }
 
 /* HERO */
 
 .hero{
-  background:
-  linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
-  url("assets/images/contact-banner.jpg") center/cover;
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+url("assets/images/contact-banner.jpg") center/cover;
 
-  padding:90px 20px;
-  text-align:center;
-  color:white;
+color:white;
+text-align:center;
+padding:100px 20px;
 }
 
 .hero h1{
-  font-size:32px;
-  margin-bottom:12px;
+font-size:34px;
+margin-bottom:15px;
 }
 
 .hero p{
-  font-size:16px;
-  line-height:1.7;
-  opacity:.95;
+font-size:16px;
+line-height:1.8;
+max-width:700px;
+margin:auto;
 }
 
-/* SECTION */
+/* CONTACT SECTION */
 
 .section{
-  padding:26px 18px;
+padding:25px 20px;
 }
 
-.section h2{
-  color:#0b2a45;
-  margin-bottom:14px;
-  font-size:28px;
+.section-title{
+text-align:center;
+font-size:30px;
+color:#0b2a45;
+margin-bottom:20px;
 }
 
-.section p{
-  color:#555;
-  line-height:1.8;
-  margin-bottom:16px;
-  font-size:15px;
+.contact-card{
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+margin-bottom:20px;
 }
 
-/* IMAGE BOX */
-
-.image-box{
-  background:white;
-  border-radius:16px;
-  overflow:hidden;
-  margin:22px 0;
-  box-shadow:0 5px 14px rgba(0,0,0,0.08);
-  transition:0.3s;
+.contact-card h3{
+color:#0b2a45;
+margin-bottom:12px;
 }
 
-.image-box:hover{
-  transform:translateY(-4px);
+.contact-card p{
+line-height:1.8;
+color:#555;
 }
 
-.image-box img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
-  display:block;
+.info-box{
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+margin-bottom:20px;
 }
 
-.image-box .text{
-  padding:18px;
-}
-
-/* INFO BOX */
-
-.info{
-  background:white;
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:24px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.08);
-}
-
-.info p{
-  margin-bottom:12px;
+.info-box p{
+margin-bottom:12px;
+line-height:1.8;
 }
 
 /* FORM */
 
 form{
-  background:white;
-  padding:22px;
-  border-radius:16px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
 input,
 textarea{
-  width:100%;
-  padding:14px;
-  margin-bottom:15px;
-  border:1px solid #ccc;
-  border-radius:8px;
-  font-size:15px;
+width:100%;
+padding:14px;
+border:1px solid #ccc;
+border-radius:8px;
+margin-bottom:12px;
+font-size:14px;
 }
 
 textarea{
-  resize:none;
+resize:none;
 }
 
 button{
-  width:100%;
-  max-width:250px;
-  padding:14px;
-  border:none;
-  border-radius:8px;
-  background:#f57c00;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-  transition:0.3s;
+padding:14px 20px;
+border:none;
+border-radius:8px;
+background:#f57c00;
+color:white;
+cursor:pointer;
+font-size:15px;
 }
 
 button:hover{
-  background:#d96b00;
+background:#d96b00;
+}
+
+/* WHATSAPP */
+
+.whatsapp-btn{
+display:block;
+text-align:center;
+background:#25D366;
+color:white;
+text-decoration:none;
+padding:14px;
+border-radius:10px;
+margin-top:15px;
+font-weight:bold;
+}
+
+.whatsapp-btn:hover{
+background:#1fb857;
 }
 
 /* FOOTER */
 
 footer{
-  background:#0b2a45;
-  color:white;
-  text-align:center;
-  padding:18px;
-  margin-top:30px;
-  font-size:14px;
+background:#0b2a45;
+color:white;
+text-align:center;
+padding:18px;
+margin-top:20px;
+}
+
+/* DESKTOP */
+
+@media(min-width:769px){
+
+.menu-btn{
+display:none;
+}
+
+nav{
+display:flex !important;
+flex-direction:row;
+}
+
+nav a{
+border:none;
+}
+
 }
 
 </style>
@@ -259,108 +242,133 @@ footer{
 
 <header>
 
-  <a href="index.html" class="logo">
+<a href="index.html" class="logo">
 
-    <img src="assets/images/logo.png">
+<img src="assets/images/logo.png">
 
-    <span>Cargoman Logistics</span>
+<span>Cargoman Logistics</span>
 
-  </a>
+</a>
 
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="menu-btn" onclick="toggleMenu()">
+☰
+</div>
 
 </header>
 
 <nav id="menu">
 
-  <a href="index.html">Home</a>
+<a href="index.html">Home</a>
 
-  <a href="services.html">Services</a>
+<a href="services.html">Services</a>
 
-  <a href="about.html">About</a>
+<a href="about.html">About</a>
 
-  <a href="contact.html">Contact</a>
+<a href="contact.html">Contact</a>
 
-  <a href="login.html" id="loginBtn">Login</a>
+<a href="login.html" id="loginBtn">Login</a>
 
-  <a href="#" id="profileBtn" style="display:none;">Profile</a>
+<a href="profile.html" id="profileBtn" style="display:none;">
+Profile
+</a>
 
-  <a href="#" id="logoutBtn" style="display:none;" onclick="logout()">Logout</a>
+<a href="#" id="logoutBtn" style="display:none;" onclick="logout()">
+Logout
+</a>
 
 </nav>
 
 <section class="hero">
 
-  <h1>Contact Cargoman Logistics</h1>
+<h1>Contact Cargoman Logistics</h1>
 
-  <p>
-    Reliable logistics support and customer assistance across India.
-  </p>
+<p>
+Need logistics support, shipment assistance or business inquiries?
+Our team is ready to help.
+</p>
 
 </section>
 
 <section class="section">
 
-  <h2>Get in Touch</h2>
+<h2 class="section-title">
+Get In Touch
+</h2>
 
-  <p>
-    Need shipment support, delivery coordination or logistics assistance?
-    Our operations and support team is available to help you quickly and professionally.
-  </p>
+<div class="contact-card">
 
-  <div class="image-box">
+<h3>Customer Support</h3>
 
-    <img src="assets/images/contact-support.jpg">
+<p>
+Our logistics experts are available to assist with shipment tracking,
+delivery updates and transportation inquiries.
+</p>
 
-    <div class="text">
+</div>
 
-      <p>
-        Our logistics support team handles transportation coordination,
-        shipment assistance and operational communication for smooth deliveries.
-      </p>
+<div class="info-box">
 
-    </div>
+<p>📍 Location: India</p>
 
-  </div>
+<p>📞 Phone: +91 96765 73541</p>
 
-  <div class="info">
+<p>✉ Email: cargomanindia@gmail.com</p>
 
-    <p><strong>📍 Location:</strong> India</p>
+<p>🕘 Working Hours: Monday - Saturday | 9:00 AM - 6:00 PM</p>
 
-    <p><strong>📞 Phone:</strong> +91 96765 73541</p>
+</div>
 
-    <p><strong>✉ Email:</strong> cargomanindia@gmail.com</p>
+<form
+action="https://formsubmit.co/cargomanindia@gmail.com"
+method="POST">
 
-    <p><strong>🕘 Working Hours:</strong> Monday – Saturday | 9:00 AM – 6:00 PM</p>
+<input
+type="hidden"
+name="_captcha"
+value="false">
 
-  </div>
+<input
+type="hidden"
+name="_subject"
+value="New Cargoman Logistics Message">
 
-  <h2>Send Us a Message</h2>
+<input
+type="text"
+name="name"
+placeholder="Your Name"
+required>
 
-  <form action="https://formsubmit.co/cargomanindia@gmail.com" method="POST">
+<input
+type="email"
+name="email"
+placeholder="Your Email"
+required>
 
-    <input type="hidden" name="_captcha" value="false">
+<textarea
+name="message"
+rows="6"
+placeholder="Write your message..."
+required></textarea>
 
-    <input type="hidden" name="_subject" value="New Cargoman Logistics Message">
+<button type="submit">
 
-    <input type="hidden" name="_next" value="https://cargoman-logistics.github.io/cargoman-logistics/contact.html">
+Send Message
 
-    <input type="text" name="name" placeholder="Your Name" required>
+</button>
 
-    <input type="email" name="email" placeholder="Your Email Address" required>
+</form>
 
-    <textarea name="message" rows="5" placeholder="Write your message here..." required></textarea>
+<a
+href="https://wa.me/919676573541"
+class="whatsapp-btn">
 
-    <button type="submit">Send Message</button>
+💬 Chat on WhatsApp
 
-  </form>
+</a>
 
 </section>
-
 <footer>
-
-  © 2025 Cargoman Logistics · All Rights Reserved
-
+© 2025 Cargoman Logistics · All Rights Reserved
 </footer>
 
 <script>
@@ -369,35 +377,62 @@ footer{
 
 function toggleMenu(){
 
-  const menu = document.getElementById("menu");
-
-  menu.classList.toggle("show");
+document
+.getElementById("menu")
+.classList.toggle("show");
 
 }
 
 /* AUTO CLOSE MENU */
 
-const navLinks = document.querySelectorAll("#menu a");
+const navLinks =
+document.querySelectorAll(
+"#menu a"
+);
 
 navLinks.forEach(link => {
 
-  link.addEventListener("click", () => {
+link.addEventListener(
+"click",
+() => {
 
-    document.getElementById("menu").classList.remove("show");
+document
+.getElementById("menu")
+.classList.remove(
+"show"
+);
 
-  });
+}
+
+);
 
 });
 
 /* LOGIN STATE */
 
-if(localStorage.getItem("loggedIn") === "true"){
+if(
+localStorage.getItem(
+"loggedIn"
+) === "true"
+){
 
-  document.getElementById("loginBtn").style.display = "none";
+document
+.getElementById(
+"loginBtn"
+).style.display =
+"none";
 
-  document.getElementById("profileBtn").style.display = "block";
+document
+.getElementById(
+"profileBtn"
+).style.display =
+"block";
 
-  document.getElementById("logoutBtn").style.display = "block";
+document
+.getElementById(
+"logoutBtn"
+).style.display =
+"block";
 
 }
 
@@ -405,11 +440,16 @@ if(localStorage.getItem("loggedIn") === "true"){
 
 function logout(){
 
-  localStorage.removeItem("loggedIn");
+localStorage.removeItem(
+"loggedIn"
+);
 
-  alert("Logged Out Successfully");
+alert(
+"Logged Out Successfully"
+);
 
-  window.location.href = "index.html";
+window.location.href =
+"index.html";
 
 }
 
