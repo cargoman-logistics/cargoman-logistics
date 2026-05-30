@@ -1,295 +1,508 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cargoman Logistics - Login</title><style>
+
+<title>Login | Cargoman Logistics</title>
+
+<style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,Helvetica,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:#f4f6f9;
-  min-height:100vh;
+background:#f4f6f9;
+color:#222;
 }
 
 /* HEADER */
 
 header{
-  background:#0b2a45;
-  color:white;
-  padding:15px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+background:#0b2a45;
+color:white;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .logo img{
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  background:white;
-  padding:4px;
+width:50px;
+height:50px;
+border-radius:50%;
+background:white;
+padding:4px;
 }
 
 .logo span{
-  font-size:20px;
-  font-weight:bold;
+font-size:20px;
+font-weight:bold;
 }
 
-/* LOGIN SECTION */
+/* LOGIN CONTAINER */
 
 .container{
-  min-height:calc(100vh - 80px);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
+min-height:85vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
 }
 
 .login-card{
-  width:100%;
-  max-width:450px;
-  background:white;
-  border-radius:20px;
-  padding:30px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+width:100%;
+max-width:450px;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
 .login-card h1{
-  color:#0b2a45;
-  text-align:center;
-  margin-bottom:10px;
+text-align:center;
+color:#0b2a45;
+margin-bottom:10px;
 }
 
 .login-card p{
-  text-align:center;
-  color:#666;
-  margin-bottom:25px;
+text-align:center;
+color:#666;
+margin-bottom:25px;
 }
 
+/* FORM */
+
 input{
-  width:100%;
-  padding:14px;
-  border:1px solid #ccc;
-  border-radius:8px;
-  margin-bottom:15px;
-  font-size:15px;
+width:100%;
+padding:14px;
+border:1px solid #ccc;
+border-radius:8px;
+margin-bottom:12px;
+font-size:15px;
 }
 
 .remember{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:15px;
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:15px;
 }
 
 .remember input{
-  width:auto;
-  margin:0;
+width:auto;
+margin:0;
 }
 
 button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:8px;
-  background:#f57c00;
-  color:white;
-  font-size:16px;
-  cursor:pointer;
+width:100%;
+padding:14px;
+border:none;
+border-radius:8px;
+background:#f57c00;
+color:white;
+font-size:16px;
+cursor:pointer;
+font-weight:bold;
 }
 
 button:hover{
-  background:#d96b00;
+background:#d96b00;
 }
 
-.links{
-  display:flex;
-  justify-content:space-between;
-  margin-top:15px;
+/* ACCOUNTS */
+
+.accounts{
+margin-top:20px;
+background:#eef3f7;
+padding:15px;
+border-radius:12px;
 }
 
-.links a{
-  color:#0b2a45;
-  text-decoration:none;
-  font-size:14px;
+.accounts h3{
+margin-bottom:15px;
+color:#0b2a45;
 }
 
-.demo{
-  margin-top:20px;
-  background:#eef3f7;
-  padding:15px;
-  border-radius:10px;
-  font-size:14px;
-  line-height:1.8;
+.account{
+margin-bottom:15px;
+line-height:1.8;
 }
+
+.account:last-child{
+margin-bottom:0;
+}
+
+/* FOOTER */
 
 footer{
-  background:#0b2a45;
-  color:white;
-  text-align:center;
-  padding:15px;
+background:#0b2a45;
+color:white;
+text-align:center;
+padding:15px;
 }
 
-</style></head><body><header><div class="logo">
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
 <img src="assets/images/logo.png">
+
 <span>Cargoman Logistics</span>
-</div></header><div class="container"><div class="login-card"><h1>Login Portal</h1><p>Access your logistics dashboard</p><input type="email" id="email" placeholder="Enter Email"><input type="password" id="password" placeholder="Enter Password"><div class="remember">
-<input type="checkbox" id="rememberMe">
-<label for="rememberMe">Remember Me</label>
-</div><button onclick="login()">Login</button>
 
-<div class="links"><a href="#" onclick="forgotPassword()">Forgot Password?</a>
+</div>
 
-<a href="index.html">Back Home</a>
+</header>
 
-</div><div class="demo"><b>Admin</b><br>
-admin@cargoman.com / 123456
+<div class="container">
 
-<br><br>
+<div class="login-card">
 
-<b>Manager</b><br>
-manager@cargoman.com / 123456
+<h1>Login Portal</h1>
 
-<br><br>
+<p>
+Access your logistics dashboard
+</p>
 
-<b>Staff</b><br>
-staff@cargoman.com / 123456
+<input
+type="email"
+id="email"
+placeholder="Enter Email">
 
-</div></div></div>
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
+
+<div class="remember">
+
+<input
+type="checkbox"
+id="rememberMe">
+
+<label for="rememberMe">
+Remember Me
+</label>
+
+</div>
+
+<button onclick="login()">
+
+Login
+
+</button>
+
+<div class="accounts">
+
+<h3>
+Demo Accounts
+</h3>
+
+<div class="account">
+
+<b>Admin</b>
+
+<br>
+
+admin@cargoman.com
+
+<br>
+
+123456
+
+</div>
+
+<div class="account">
+
+<b>Manager</b>
+
+<br>
+
+manager@cargoman.com
+
+<br>
+
+123456
+
+</div>
+
+<div class="account">
+
+<b>Staff</b>
+
+<br>
+
+staff@cargoman.com
+
+<br>
+
+123456
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 <footer>
+
 © 2025 Cargoman Logistics · All Rights Reserved
-</footer><script>
 
-/* AUTO REDIRECT IF ALREADY LOGGED IN */
+</footer>
 
-if(localStorage.getItem("loggedIn") === "true"){
-  window.location.href = "profile.html";
+<script>
+
+/* AUTO LOGIN */
+
+if(
+localStorage.getItem("loggedIn")
+=== "true"
+){
+
+window.location.href =
+"profile.html";
+
 }
 
-/* USERS DATABASE */
-
-const users = {
-
-  "admin@cargoman.com":{
-    password:"123456",
-    username:"Admin",
-    role:"Logistics Administrator"
-  },
-
-  "manager@cargoman.com":{
-    password:"123456",
-    username:"Manager",
-    role:"Operations Manager"
-  },
-
-  "staff@cargoman.com":{
-    password:"123456",
-    username:"Staff",
-    role:"Logistics Staff"
-  }
-
-};
-
-/* LOGIN FUNCTION */
+/* LOGIN SYSTEM */
 
 function login(){
 
-  const email =
-  document.getElementById("email")
-  .value
-  .trim()
-  .toLowerCase();
+const email =
+document.getElementById(
+"email"
+).value.trim();
 
-  const password =
-  document.getElementById("password")
-  .value;
+const password =
+document.getElementById(
+"password"
+).value.trim();
 
-  if(
-    users[email]
-    &&
-    users[email].password === password
-  ){
+const remember =
+document.getElementById(
+"rememberMe"
+).checked;
 
-    localStorage.setItem(
-      "loggedIn",
-      "true"
-    );
+/* ADMIN */
 
-    localStorage.setItem(
-      "email",
-      email
-    );
+if(
 
-    localStorage.setItem(
-      "username",
-      users[email].username
-    );
+email ===
+"admin@cargoman.com"
 
-    localStorage.setItem(
-      "role",
-      users[email].role
-    );
+&&
 
-    if(
-      document.getElementById("rememberMe").checked
-    ){
-      localStorage.setItem(
-        "rememberMe",
-        "true"
-      );
-    }
+password ===
+"123456"
 
-    alert(
-      "Welcome " +
-      users[email].username
-    );
+){
 
-    window.location.href =
-    "profile.html";
-
-  }else{
-
-    alert(
-      "Invalid Email or Password"
-    );
-
-  }
-
-}
-
-/* ENTER KEY LOGIN */
-
-document.addEventListener(
-  "keydown",
-  function(e){
-
-    if(e.key === "Enter"){
-      login();
-    }
-
-  }
+localStorage.setItem(
+"loggedIn",
+"true"
 );
 
-/* FORGOT PASSWORD */
+localStorage.setItem(
+"username",
+"Admin"
+);
 
-function forgotPassword(){
+localStorage.setItem(
+"email",
+"admin@cargoman.com"
+);
 
-  alert(
-    "Demo System:\n\nPassword for all demo accounts is:\n123456"
-  );
+localStorage.setItem(
+"role",
+"Logistics Administrator"
+);
+
+localStorage.setItem(
+"customerId",
+"CGM-ADMIN-001"
+);
+
+if(remember){
+
+localStorage.setItem(
+"rememberMe",
+"true"
+);
 
 }
 
-</script></body>
+alert(
+"Welcome Admin"
+);
+
+window.location.href =
+"profile.html";
+
+return;
+
+}
+
+/* MANAGER */
+
+if(
+
+email ===
+"manager@cargoman.com"
+
+&&
+
+password ===
+"123456"
+
+){
+
+localStorage.setItem(
+"loggedIn",
+"true"
+);
+
+localStorage.setItem(
+"username",
+"Manager"
+);
+
+localStorage.setItem(
+"email",
+"manager@cargoman.com"
+);
+
+localStorage.setItem(
+"role",
+"Operations Manager"
+);
+
+localStorage.setItem(
+"customerId",
+"CGM-MGR-001"
+);
+
+if(remember){
+
+localStorage.setItem(
+"rememberMe",
+"true"
+);
+
+}
+
+alert(
+"Welcome Manager"
+);
+
+window.location.href =
+"profile.html";
+
+return;
+
+}
+
+/* STAFF */
+
+if(
+
+email ===
+"staff@cargoman.com"
+
+&&
+
+password ===
+"123456"
+
+){
+
+localStorage.setItem(
+"loggedIn",
+"true"
+);
+
+localStorage.setItem(
+"username",
+"Staff"
+);
+
+localStorage.setItem(
+"email",
+"staff@cargoman.com"
+);
+
+localStorage.setItem(
+"role",
+"Logistics Staff"
+);
+
+localStorage.setItem(
+"customerId",
+"CGM-STF-001"
+);
+
+if(remember){
+
+localStorage.setItem(
+"rememberMe",
+"true"
+);
+
+}
+
+alert(
+"Welcome Staff"
+);
+
+window.location.href =
+"profile.html";
+
+return;
+
+}
+
+/* INVALID LOGIN */
+
+alert(
+"Invalid Email or Password"
+);
+
+}
+
+/* LOGOUT CLEANUP */
+
+function logout(){
+
+localStorage.removeItem(
+"loggedIn"
+);
+
+localStorage.removeItem(
+"rememberMe"
+);
+
+window.location.href =
+"login.html";
+
+}
+
+</script>
+
+</body>
 </html>
