@@ -28,6 +28,9 @@ padding:15px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
 box-shadow:0 2px 8px rgba(0,0,0,.1);
 }
 
@@ -50,6 +53,36 @@ font-size:20px;
 font-weight:bold;
 }
 
+/* MENU */
+
+.menu-btn{
+font-size:28px;
+cursor:pointer;
+color:white;
+}
+
+nav{
+display:none;
+flex-direction:column;
+background:#0b2a45;
+width:100%;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+padding:14px 18px;
+border-top:1px solid rgba(255,255,255,.1);
+}
+
+nav a:hover{
+background:#123b61;
+}
+
+#menu.show{
+display:flex;
+}
+
 /* CONTAINER */
 
 .container{
@@ -58,40 +91,71 @@ margin:auto;
 padding:20px;
 }
 
-/* PROFILE CARD */
+/* PROFILE */
 
 .profile-card{
 background:white;
-padding:25px;
-border-radius:18px;
+padding:30px;
+border-radius:20px;
 box-shadow:0 5px 15px rgba(0,0,0,.08);
 text-align:center;
 margin-bottom:20px;
 }
 
 .avatar{
-width:120px;
-height:120px;
+width:130px;
+height:130px;
 border-radius:50%;
 object-fit:cover;
-background:#0b2a45;
 display:block;
 margin:auto;
 margin-bottom:15px;
+border:4px solid #0b2a45;
 }
 
-.upload-btn{
-margin-top:10px;
+.change-photo{
+display:inline-block;
+background:#f57c00;
+color:white;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+#avatarUpload{
+display:none;
 }
 
 .profile-card h2{
 color:#0b2a45;
+margin-bottom:8px;
+}
+
+.customer-id{
+font-weight:bold;
+color:#666;
 margin-bottom:10px;
+}
+
+.badge{
+display:inline-block;
+background:#d4edda;
+color:#155724;
+padding:8px 14px;
+border-radius:30px;
+font-size:14px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.member-since{
+color:#777;
+margin-bottom:15px;
 }
 
 .profile-info{
 line-height:2;
-margin-top:15px;
 }
 
 /* STATS */
@@ -114,18 +178,17 @@ text-align:center;
 .stat-card h3{
 color:#0b2a45;
 margin-bottom:10px;
-font-size:18px;
 }
 
 .stat-card span{
-font-size:30px;
+font-size:32px;
 font-weight:bold;
 color:#f57c00;
 }
 
-/* SHIPMENT MANAGER */
+/* NOTIFICATIONS */
 
-.shipments{
+.notifications{
 background:white;
 padding:20px;
 border-radius:15px;
@@ -133,93 +196,35 @@ box-shadow:0 5px 12px rgba(0,0,0,.08);
 margin-bottom:20px;
 }
 
-.shipments h2{
+.notifications h2{
 color:#0b2a45;
 margin-bottom:15px;
 }
 
-input,
-select{
-width:100%;
+.notice{
+background:#eef3f7;
 padding:12px;
-border:1px solid #ccc;
 border-radius:8px;
 margin-bottom:10px;
-font-size:14px;
 }
 
-button{
-padding:12px 16px;
+/* DESKTOP */
+
+@media(min-width:769px){
+
+.menu-btn{
+display:none;
+}
+
+nav{
+display:flex !important;
+flex-direction:row;
+}
+
+nav a{
 border:none;
-border-radius:8px;
-background:#f57c00;
-color:white;
-cursor:pointer;
-font-size:14px;
 }
 
-button:hover{
-background:#d96b00;
-}
-
-/* SEARCH */
-
-.search-box{
-margin-bottom:20px;
-}
-
-/* SHIPMENT LIST */
-
-.shipment-list{
-margin-top:15px;
-}
-
-.shipment-item{
-background:#eef3f7;
-padding:15px;
-border-radius:10px;
-margin-bottom:12px;
-line-height:1.8;
-}
-
-.shipment-actions{
-display:flex;
-gap:10px;
-margin-top:10px;
-flex-wrap:wrap;
-}
-
-.edit-btn{
-background:#0b2a45;
-}
-
-.edit-btn:hover{
-background:#17466f;
-}
-
-.delete-btn{
-background:#d62828;
-}
-
-.delete-btn:hover{
-background:#b71c1c;
-}
-
-/* LOGOUT */
-
-.logout-btn{
-width:100%;
-margin-top:20px;
-}
-
-/* FOOTER */
-
-footer{
-background:#0b2a45;
-color:white;
-text-align:center;
-padding:15px;
-margin-top:20px;
 }
 
 </style>
@@ -230,11 +235,34 @@ margin-top:20px;
 <header>
 
 <div class="logo">
+
 <img src="assets/images/logo.png">
+
 <span>Cargoman Logistics</span>
+
+</div>
+
+<div class="menu-btn" onclick="toggleMenu()">
+☰
 </div>
 
 </header>
+
+<nav id="menu">
+
+<a href="index.html">🏠 Home</a>
+
+<a href="my-shipments.html">📦 My Shipments</a>
+
+<a href="services.html">🚚 Services</a>
+
+<a href="about.html">ℹ️ About</a>
+
+<a href="contact.html">📞 Contact</a>
+
+<a href="#" onclick="logout()">🚪 Logout</a>
+
+</nav>
 
 <div class="container">
 
@@ -247,13 +275,44 @@ id="avatar"
 class="avatar"
 src="assets/images/logo.png">
 
+<label
+for="avatarUpload"
+class="change-photo">
+
+📷 Change Profile Picture
+
+</label>
+
 <input
 type="file"
 id="avatarUpload"
-class="upload-btn"
 accept="image/*">
 
-<h2 id="username">User</h2>
+<h2 id="username">
+User
+</h2>
+
+<div class="customer-id">
+
+Customer ID:
+<span id="customerId">
+CGM10001
+</span>
+
+</div>
+
+<div class="badge">
+
+✓ Verified Account
+
+</div>
+
+<div class="member-since">
+
+Member Since:
+June 2026
+
+</div>
 
 <div class="profile-info">
 
@@ -278,34 +337,103 @@ accept="image/*">
 <div class="stats">
 
 <div class="stat-card">
+
 <h3>Total Shipments</h3>
-<span id="totalShipments">0</span>
+
+<span id="totalShipments">
+0
+</span>
+
 </div>
 
 <div class="stat-card">
+
 <h3>Delivered</h3>
-<span id="deliveredShipments">0</span>
+
+<span id="deliveredShipments">
+0
+</span>
+
 </div>
 
 <div class="stat-card">
+
 <h3>In Transit</h3>
-<span id="transitShipments">0</span>
+
+<span id="transitShipments">
+0
+</span>
+
 </div>
 
 <div class="stat-card">
+
 <h3>Pending</h3>
-<span id="pendingShipments">0</span>
+
+<span id="pendingShipments">
+0
+</span>
+
+</div>
+
+</div>
+
+<!-- NOTIFICATIONS -->
+
+<div class="notifications">
+
+<h2>
+🔔 Notifications
+</h2>
+
+<div class="notice">
+Shipment KMB1001 Delivered
+</div>
+
+<div class="notice">
+Shipment KMB1002 In Transit
+</div>
+
+<div class="notice">
+Welcome to Cargoman Logistics
+</div>
+
+</div>
+<!-- RECENT SHIPMENTS -->
+
+<div class="notifications">
+
+<h2>
+📦 Recent Shipments
+</h2>
+
+<div id="recentShipments">
+
+<div class="notice">
+KMB1001 • Hyderabad → Delhi • Delivered
+</div>
+
+<div class="notice">
+KMB1002 • Mumbai → Bangalore • In Transit
+</div>
+
+<div class="notice">
+KMB1003 • Chennai → Kolkata • Pending
+</div>
+
 </div>
 
 </div>
 
 <!-- SHIPMENT MANAGER -->
 
-<div class="shipments">
+<div class="notifications">
 
-<h2>Shipment Manager</h2>
+<h2>
+🚚 Shipment Manager
+</h2>
 
-<div class="search-box">
+<div style="margin-bottom:15px;">
 
 <input
 type="text"
@@ -327,12 +455,12 @@ placeholder="Customer Name">
 <input
 type="text"
 id="from"
-placeholder="From">
+placeholder="Origin City">
 
 <input
 type="text"
 id="to"
-placeholder="To">
+placeholder="Destination City">
 
 <input
 type="date"
@@ -348,26 +476,45 @@ id="bookingDate">
 
 </select>
 
-<button onclick="addShipment()">
-Add Shipment
+<button
+onclick="addShipment()"
+style="width:100%;margin-top:10px;">
+
+➕ Add Shipment
+
 </button>
 
+</div>
+
+<!-- SHIPMENT LIST -->
+
+<div class="notifications">
+
+<h2>
+📋 Shipment Records
+</h2>
+
 <div
-id="shipmentList"
-class="shipment-list">
+id="shipmentList">
 </div>
 
 </div>
+
 <button
-class="logout-btn"
+class="change-photo"
+style="width:100%;text-align:center;"
 onclick="logout()">
-Logout
+
+🚪 Logout
+
 </button>
 
 </div>
 
 <footer>
+
 © 2025 Cargoman Logistics · All Rights Reserved
+
 </footer>
 
 <script>
@@ -383,46 +530,79 @@ window.location.href =
 
 }
 
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+document
+.getElementById("menu")
+.classList.toggle("show");
+
+}
+
 /* USER DATA */
 
 const username =
-localStorage.getItem("username") ||
-"User";
+localStorage.getItem("username")
+|| "User";
 
 const email =
-localStorage.getItem("email") ||
-"No Email";
+localStorage.getItem("email")
+|| "No Email";
 
 const role =
-localStorage.getItem("role") ||
-"User";
+localStorage.getItem("role")
+|| "Customer";
 
-document.getElementById("username")
-.innerText = username;
+document.getElementById(
+"username"
+).innerText =
+username;
 
-document.getElementById("email")
-.innerText = email;
+document.getElementById(
+"email"
+).innerText =
+email;
 
-document.getElementById("role")
-.innerText = role;
+document.getElementById(
+"role"
+).innerText =
+role;
 
-/* AVATAR SYSTEM */
+/* CUSTOMER ID */
+
+document.getElementById(
+"customerId"
+).innerText =
+"CGM" +
+Math.floor(
+10000 +
+Math.random() * 90000
+);
+
+/* AVATAR */
 
 const avatarKey =
 "avatar_" + email;
 
 const savedAvatar =
-localStorage.getItem(avatarKey);
+localStorage.getItem(
+avatarKey
+);
 
 if(savedAvatar){
 
-document.getElementById("avatar")
-.src = savedAvatar;
+document.getElementById(
+"avatar"
+).src =
+savedAvatar;
 
 }
 
 document
-.getElementById("avatarUpload")
+.getElementById(
+"avatarUpload"
+)
 .addEventListener(
 "change",
 function(e){
@@ -443,14 +623,16 @@ avatarKey,
 event.target.result
 );
 
-document
-.getElementById("avatar")
-.src =
+document.getElementById(
+"avatar"
+).src =
 event.target.result;
 
 };
 
-reader.readAsDataURL(file);
+reader.readAsDataURL(
+file
+);
 
 }
 );
@@ -459,42 +641,11 @@ reader.readAsDataURL(file);
 
 let shipments =
 JSON.parse(
-localStorage.getItem("shipments")
-) || [
-
-{
-tracking:"KMB1001",
-customer:"Ramesh Kumar",
-from:"Hyderabad",
-to:"Delhi",
-bookingDate:"2026-06-01",
-updatedDate:"2026-06-05",
-status:"Delivered"
-},
-
-{
-tracking:"KMB1002",
-customer:"Anita Sharma",
-from:"Mumbai",
-to:"Bangalore",
-bookingDate:"2026-06-03",
-updatedDate:"2026-06-04",
-status:"In Transit"
-},
-
-{
-tracking:"KMB1003",
-customer:"Rahul Verma",
-from:"Chennai",
-to:"Kolkata",
-bookingDate:"2026-06-05",
-updatedDate:"2026-06-05",
-status:"Pending"
-}
-
-];
-
-/* SAVE DATABASE */
+localStorage.getItem(
+"shipments"
+)
+) || [];
+  /* SAVE DATABASE */
 
 function saveShipments(){
 
@@ -505,157 +656,7 @@ JSON.stringify(shipments)
 
 }
 
-/* SEARCH */
-
-document
-.getElementById("searchShipment")
-.addEventListener(
-"input",
-function(){
-
-renderShipments(
-this.value.toLowerCase()
-);
-
-}
-);
-
-/* RENDER SHIPMENTS */
-
-function renderShipments(
-searchText = ""
-){
-
-const list =
-document.getElementById(
-"shipmentList"
-);
-
-list.innerHTML = "";
-
-let delivered = 0;
-let transit = 0;
-let pending = 0;
-
-shipments.forEach(
-(item,index)=>{
-
-if(
-item.status ===
-"Delivered"
-){
-delivered++;
-}
-
-if(
-item.status ===
-"In Transit"
-){
-transit++;
-}
-
-if(
-item.status ===
-"Pending"
-){
-pending++;
-}
-
-const matches =
-
-item.tracking
-.toLowerCase()
-.includes(searchText)
-
-||
-
-item.customer
-.toLowerCase()
-.includes(searchText);
-
-if(!matches) return;
-
-list.innerHTML += `
-
-<div class="shipment-item">
-
-<b>${item.tracking}</b>
-
-<br>
-
-👤 ${item.customer}
-
-<br>
-
-📍 ${item.from}
-→
-${item.to}
-
-<br>
-
-📅 Booked:
-${item.bookingDate}
-
-<br>
-
-🔄 Updated:
-${item.updatedDate}
-
-<br>
-
-🚚 Status:
-${item.status}
-
-<br>
-
-<div class="shipment-actions">
-
-<button
-class="edit-btn"
-onclick="editShipment(${index})">
-
-Edit
-
-</button>
-
-<button
-class="delete-btn"
-onclick="deleteShipment(${index})">
-
-Delete
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-document.getElementById(
-"totalShipments"
-).innerText =
-shipments.length;
-
-document.getElementById(
-"deliveredShipments"
-).innerText =
-delivered;
-
-document.getElementById(
-"transitShipments"
-).innerText =
-transit;
-
-document.getElementById(
-"pendingShipments"
-).innerText =
-pending;
-
-}
-  /* ADD SHIPMENT */
+/* ADD SHIPMENT */
 
 function addShipment(){
 
@@ -705,8 +706,6 @@ return;
 
 }
 
-/* CHECK DUPLICATE */
-
 const exists =
 shipments.some(
 item =>
@@ -725,22 +724,22 @@ return;
 
 shipments.push({
 
-tracking:tracking,
+tracking,
 
-customer:customer,
+customer,
 
-from:from,
+from,
 
-to:to,
+to,
 
-bookingDate:bookingDate,
+bookingDate,
 
 updatedDate:
 new Date()
 .toISOString()
 .split("T")[0],
 
-status:status
+status
 
 });
 
@@ -796,23 +795,19 @@ saveShipments();
 
 renderShipments();
 
-alert(
-"Shipment Updated"
-);
-
 }
 
 /* DELETE SHIPMENT */
 
 function deleteShipment(index){
 
-const confirmDelete =
-confirm(
+if(
+!confirm(
 "Delete this shipment?"
-);
-
-if(!confirmDelete)
+)
+){
 return;
+}
 
 shipments.splice(
 index,
@@ -822,10 +817,6 @@ index,
 saveShipments();
 
 renderShipments();
-
-alert(
-"Shipment Deleted"
-);
 
 }
 
@@ -859,16 +850,182 @@ document.getElementById(
 
 }
 
+/* SEARCH */
+
+document
+.getElementById(
+"searchShipment"
+)
+.addEventListener(
+"input",
+function(){
+
+renderShipments(
+this.value.toLowerCase()
+);
+
+}
+);
+
+/* RENDER SHIPMENTS */
+
+function renderShipments(
+searchText = ""
+){
+
+const list =
+document.getElementById(
+"shipmentList"
+);
+
+list.innerHTML = "";
+
+let delivered = 0;
+let transit = 0;
+let pending = 0;
+
+shipments.forEach(
+(item,index)=>{
+
+if(
+item.status ===
+"Delivered"
+) delivered++;
+
+if(
+item.status ===
+"In Transit"
+) transit++;
+
+if(
+item.status ===
+"Pending"
+) pending++;
+
+const matches =
+
+item.tracking
+.toLowerCase()
+.includes(searchText)
+
+||
+
+item.customer
+.toLowerCase()
+.includes(searchText);
+
+if(!matches) return;
+
+list.innerHTML += `
+
+<div class="notice">
+
+<b>${item.tracking}</b>
+
+<br>
+
+👤 ${item.customer}
+
+<br>
+
+📍 ${item.from}
+ → ${item.to}
+
+<br>
+
+📅 ${item.bookingDate}
+
+<br>
+
+🚚 ${item.status}
+
+<br><br>
+
+<button
+onclick="editShipment(${index})">
+
+Edit
+
+</button>
+
+<button
+onclick="deleteShipment(${index})"
+style="background:#d62828;margin-left:8px;">
+
+Delete
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById(
+"totalShipments"
+).innerText =
+shipments.length;
+
+document.getElementById(
+"deliveredShipments"
+).innerText =
+delivered;
+
+document.getElementById(
+"transitShipments"
+).innerText =
+transit;
+
+document.getElementById(
+"pendingShipments"
+).innerText =
+pending;
+
+/* UPDATE RECENT SHIPMENTS */
+
+const recent =
+document.getElementById(
+"recentShipments"
+);
+
+if(recent){
+
+recent.innerHTML = "";
+
+shipments
+.slice(-3)
+.reverse()
+.forEach(item=>{
+
+recent.innerHTML += `
+
+<div class="notice">
+
+${item.tracking}
+ •
+ ${item.from}
+ →
+ ${item.to}
+ •
+ ${item.status}
+
+</div>
+
+`;
+
+});
+
+}
+
+}
+
 /* LOGOUT */
 
 function logout(){
 
 localStorage.removeItem(
 "loggedIn"
-);
-
-localStorage.removeItem(
-"rememberMe"
 );
 
 alert(
@@ -881,8 +1038,6 @@ window.location.href =
 }
 
 /* INITIALIZE */
-
-saveShipments();
 
 renderShipments();
 
