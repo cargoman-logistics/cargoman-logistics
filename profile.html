@@ -56,9 +56,10 @@ font-weight:bold;
 /* MENU */
 
 .menu-btn{
-font-size:28px;
+font-size:30px;
 cursor:pointer;
 color:white;
+user-select:none;
 }
 
 nav{
@@ -66,6 +67,7 @@ display:none;
 flex-direction:column;
 background:#0b2a45;
 width:100%;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
 }
 
 nav a{
@@ -73,6 +75,7 @@ color:white;
 text-decoration:none;
 padding:14px 18px;
 border-top:1px solid rgba(255,255,255,.1);
+transition:.3s;
 }
 
 nav a:hover{
@@ -91,7 +94,7 @@ margin:auto;
 padding:20px;
 }
 
-/* PROFILE */
+/* PROFILE CARD */
 
 .profile-card{
 background:white;
@@ -117,10 +120,11 @@ border:4px solid #0b2a45;
 display:inline-block;
 background:#f57c00;
 color:white;
-padding:10px 15px;
+padding:10px 16px;
 border-radius:8px;
 cursor:pointer;
 margin-bottom:15px;
+font-weight:bold;
 }
 
 #avatarUpload{
@@ -129,13 +133,14 @@ display:none;
 
 .profile-card h2{
 color:#0b2a45;
-margin-bottom:8px;
+margin-bottom:10px;
 }
 
 .customer-id{
 font-weight:bold;
-color:#666;
+color:#555;
 margin-bottom:10px;
+font-size:15px;
 }
 
 .badge{
@@ -156,6 +161,29 @@ margin-bottom:15px;
 
 .profile-info{
 line-height:2;
+}
+
+/* QUICK ACTIONS */
+
+.quick-actions{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:12px;
+margin-bottom:20px;
+}
+
+.action-btn{
+background:#0b2a45;
+color:white;
+text-decoration:none;
+padding:14px;
+text-align:center;
+border-radius:12px;
+font-weight:bold;
+}
+
+.action-btn:hover{
+background:#123b61;
 }
 
 /* STATS */
@@ -186,7 +214,7 @@ font-weight:bold;
 color:#f57c00;
 }
 
-/* NOTIFICATIONS */
+/* SECTION BOX */
 
 .notifications{
 background:white;
@@ -206,6 +234,30 @@ background:#eef3f7;
 padding:12px;
 border-radius:8px;
 margin-bottom:10px;
+}
+
+/* FORM */
+
+input,
+select{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+margin-bottom:10px;
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:8px;
+background:#f57c00;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#d96b00;
 }
 
 /* DESKTOP */
@@ -266,8 +318,6 @@ border:none;
 
 <div class="container">
 
-<!-- PROFILE -->
-
 <div class="profile-card">
 
 <img
@@ -296,39 +346,69 @@ User
 
 Customer ID:
 <span id="customerId">
-CGM10001
+Loading...
 </span>
 
 </div>
 
 <div class="badge">
 
-✓ Verified Account
+✓ Verified Customer
 
 </div>
 
 <div class="member-since">
 
-Member Since:
-June 2026
+Member Since: June 2026
 
 </div>
 
 <div class="profile-info">
 
-<p>
-📧 <span id="email"></span>
-</p>
+<p>📧 <span id="email"></span></p>
 
-<p>
-🪪 <span id="role"></span>
-</p>
+<p>🪪 <span id="role"></span></p>
 
-<p>
-🟢 Active Account
-</p>
+<p>🟢 Active Account</p>
 
 </div>
+
+</div>
+<!-- QUICK ACTIONS -->
+
+<div class="quick-actions">
+
+<a
+href="index.html"
+class="action-btn">
+
+🏠 Home
+
+</a>
+
+<a
+href="my-shipments.html"
+class="action-btn">
+
+📦 My Shipments
+
+</a>
+
+<a
+href="contact.html"
+class="action-btn">
+
+📞 Support
+
+</a>
+
+<a
+href="#shipmentManager"
+class="action-btn">
+
+🚚 Manage Shipments
+
+</a>
 
 </div>
 
@@ -387,18 +467,19 @@ June 2026
 </h2>
 
 <div class="notice">
-Shipment KMB1001 Delivered
+✅ Welcome to Cargoman Logistics
 </div>
 
 <div class="notice">
-Shipment KMB1002 In Transit
+📦 Track all shipments from your dashboard
 </div>
 
 <div class="notice">
-Welcome to Cargoman Logistics
+🚚 Shipment updates will appear here
 </div>
 
 </div>
+
 <!-- RECENT SHIPMENTS -->
 
 <div class="notifications">
@@ -410,15 +491,21 @@ Welcome to Cargoman Logistics
 <div id="recentShipments">
 
 <div class="notice">
+
 KMB1001 • Hyderabad → Delhi • Delivered
+
 </div>
 
 <div class="notice">
+
 KMB1002 • Mumbai → Bangalore • In Transit
+
 </div>
 
 <div class="notice">
+
 KMB1003 • Chennai → Kolkata • Pending
+
 </div>
 
 </div>
@@ -427,20 +514,18 @@ KMB1003 • Chennai → Kolkata • Pending
 
 <!-- SHIPMENT MANAGER -->
 
-<div class="notifications">
+<div
+class="notifications"
+id="shipmentManager">
 
 <h2>
 🚚 Shipment Manager
 </h2>
 
-<div style="margin-bottom:15px;">
-
 <input
 type="text"
 id="searchShipment"
 placeholder="Search Tracking ID or Customer Name">
-
-</div>
 
 <input
 type="text"
@@ -478,7 +563,7 @@ id="bookingDate">
 
 <button
 onclick="addShipment()"
-style="width:100%;margin-top:10px;">
+style="width:100%;">
 
 ➕ Add Shipment
 
@@ -486,7 +571,7 @@ style="width:100%;margin-top:10px;">
 
 </div>
 
-<!-- SHIPMENT LIST -->
+<!-- SHIPMENT RECORDS -->
 
 <div class="notifications">
 
@@ -494,12 +579,10 @@ style="width:100%;margin-top:10px;">
 📋 Shipment Records
 </h2>
 
-<div
-id="shipmentList">
+<div id="shipmentList">
 </div>
 
 </div>
-
 <button
 class="change-photo"
 style="width:100%;text-align:center;"
@@ -525,8 +608,7 @@ if(localStorage.getItem("loggedIn") !== "true"){
 
 alert("Please Login First");
 
-window.location.href =
-"login.html";
+window.location.href = "login.html";
 
 }
 
@@ -534,8 +616,7 @@ window.location.href =
 
 function toggleMenu(){
 
-document
-.getElementById("menu")
+document.getElementById("menu")
 .classList.toggle("show");
 
 }
@@ -548,37 +629,48 @@ localStorage.getItem("username")
 
 const email =
 localStorage.getItem("email")
-|| "No Email";
+|| "customer@cargoman.com";
 
 const role =
 localStorage.getItem("role")
 || "Customer";
 
-document.getElementById(
-"username"
-).innerText =
-username;
+document.getElementById("username")
+.innerText = username;
 
-document.getElementById(
-"email"
-).innerText =
-email;
+document.getElementById("email")
+.innerText = email;
 
-document.getElementById(
-"role"
-).innerText =
-role;
+document.getElementById("role")
+.innerText = role;
 
-/* CUSTOMER ID */
+/* PERMANENT CUSTOMER ID */
 
-document.getElementById(
+let customerId =
+localStorage.getItem(
 "customerId"
-).innerText =
+);
+
+if(!customerId){
+
+customerId =
 "CGM" +
 Math.floor(
 10000 +
 Math.random() * 90000
 );
+
+localStorage.setItem(
+"customerId",
+customerId
+);
+
+}
+
+document.getElementById(
+"customerId"
+).innerText =
+customerId;
 
 /* AVATAR */
 
@@ -599,11 +691,9 @@ savedAvatar;
 
 }
 
-document
-.getElementById(
+document.getElementById(
 "avatarUpload"
-)
-.addEventListener(
+).addEventListener(
 "change",
 function(e){
 
@@ -637,7 +727,7 @@ file
 }
 );
 
-/* SHIPMENT DATABASE */
+/* SHIPMENTS */
 
 let shipments =
 JSON.parse(
@@ -645,7 +735,8 @@ localStorage.getItem(
 "shipments"
 )
 ) || [];
-  /* SAVE DATABASE */
+
+/* SAVE */
 
 function saveShipments(){
 
@@ -655,6 +746,21 @@ JSON.stringify(shipments)
 );
 
 }
+
+/* SEARCH */
+
+document.getElementById(
+"searchShipment"
+).addEventListener(
+"input",
+function(){
+
+renderShipments(
+this.value.toLowerCase()
+);
+
+}
+);
 
 /* ADD SHIPMENT */
 
@@ -725,13 +831,9 @@ return;
 shipments.push({
 
 tracking,
-
 customer,
-
 from,
-
 to,
-
 bookingDate,
 
 updatedDate:
@@ -755,7 +857,7 @@ alert(
 
 }
 
-/* EDIT SHIPMENT */
+/* EDIT */
 
 function editShipment(index){
 
@@ -773,7 +875,7 @@ return;
 
 const status =
 prompt(
-"Status (Delivered / In Transit / Pending)",
+"Status",
 item.status
 );
 
@@ -797,13 +899,13 @@ renderShipments();
 
 }
 
-/* DELETE SHIPMENT */
+/* DELETE */
 
 function deleteShipment(index){
 
 if(
 !confirm(
-"Delete this shipment?"
+"Delete Shipment?"
 )
 ){
 return;
@@ -850,24 +952,7 @@ document.getElementById(
 
 }
 
-/* SEARCH */
-
-document
-.getElementById(
-"searchShipment"
-)
-.addEventListener(
-"input",
-function(){
-
-renderShipments(
-this.value.toLowerCase()
-);
-
-}
-);
-
-/* RENDER SHIPMENTS */
+/* RENDER */
 
 function renderShipments(
 searchText = ""
@@ -888,18 +973,15 @@ shipments.forEach(
 (item,index)=>{
 
 if(
-item.status ===
-"Delivered"
+item.status === "Delivered"
 ) delivered++;
 
 if(
-item.status ===
-"In Transit"
+item.status === "In Transit"
 ) transit++;
 
 if(
-item.status ===
-"Pending"
+item.status === "Pending"
 ) pending++;
 
 const matches =
@@ -928,8 +1010,7 @@ list.innerHTML += `
 
 <br>
 
-📍 ${item.from}
- → ${item.to}
+📍 ${item.from} → ${item.to}
 
 <br>
 
@@ -982,14 +1063,12 @@ document.getElementById(
 ).innerText =
 pending;
 
-/* UPDATE RECENT SHIPMENTS */
+/* RECENT SHIPMENTS */
 
 const recent =
 document.getElementById(
 "recentShipments"
 );
-
-if(recent){
 
 recent.innerHTML = "";
 
@@ -1018,8 +1097,6 @@ ${item.tracking}
 
 }
 
-}
-
 /* LOGOUT */
 
 function logout(){
@@ -1037,7 +1114,7 @@ window.location.href =
 
 }
 
-/* INITIALIZE */
+/* START */
 
 renderShipments();
 
