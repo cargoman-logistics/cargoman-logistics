@@ -646,26 +646,10 @@ document.getElementById("role")
 
 /* PERMANENT CUSTOMER ID */
 
-let customerId =
+const customerId =
 localStorage.getItem(
 "customerId"
-);
-
-if(!customerId){
-
-customerId =
-"CGM" +
-Math.floor(
-10000 +
-Math.random() * 90000
-);
-
-localStorage.setItem(
-"customerId",
-customerId
-);
-
-}
+) || "CGM-GUEST";
 
 document.getElementById(
 "customerId"
