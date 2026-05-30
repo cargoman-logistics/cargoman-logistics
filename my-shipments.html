@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Shipments | Cargoman Logistics</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+color:#222;
+}
+
+/* HEADER */
+
+header{
+background:#0b2a45;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+text-decoration:none;
+color:white;
+}
+
+.logo img{
+width:50px;
+height:50px;
+border-radius:50%;
+background:white;
+padding:4px;
+}
+
+.logo span{
+font-size:20px;
+font-weight:bold;
+}
+
+.menu-btn{
+font-size:28px;
+cursor:pointer;
+}
+
+/* MENU */
+
+nav{
+display:none;
+flex-direction:column;
+background:#0b2a45;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+padding:14px 20px;
+border-top:1px solid rgba(255,255,255,.1);
+}
+
+nav a:hover{
+background:#123b61;
+}
+
+#menu.show{
+display:flex;
+}
+
+/* HERO */
+
+.hero{
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+url("assets/images/warehouse.jpg") center/cover;
+
+color:white;
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:34px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:16px;
+line-height:1.8;
+}
+
+/* CONTENT */
+
+.container{
+padding:20px;
+max-width:1200px;
+margin:auto;
+}
+
+.search-box{
+margin-bottom:20px;
+}
+
+.search-box input{
+width:100%;
+padding:14px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:15px;
+}
+
+.shipment-card{
+background:white;
+border-radius:18px;
+padding:20px;
+margin-bottom:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.shipment-card h3{
+color:#0b2a45;
+margin-bottom:10px;
+}
+
+.shipment-card p{
+margin-bottom:8px;
+color:#555;
+}
+
+.status{
+font-weight:bold;
+padding:6px 12px;
+border-radius:20px;
+display:inline-block;
+margin-top:10px;
+}
+
+.delivered{
+background:#d4edda;
+color:#155724;
+}
+
+.transit{
+background:#fff3cd;
+color:#856404;
+}
+
+.pending{
+background:#f8d7da;
+color:#721c24;
+}
+
+.track-btn{
+display:inline-block;
+margin-top:15px;
+padding:10px 16px;
+background:#f57c00;
+color:white;
+text-decoration:none;
+border-radius:8px;
+}
+
+.track-btn:hover{
+background:#d96b00;
+}
+
+/* FOOTER */
+
+footer{
+background:#0b2a45;
+color:white;
+text-align:center;
+padding:18px;
+margin-top:20px;
+}
+
+/* DESKTOP */
+
+@media(min-width:769px){
+
+.menu-btn{
+display:none;
+}
+
+nav{
+display:flex !important;
+flex-direction:row;
+}
+
+nav a{
+border:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<a href="index.html" class="logo">
+
+<img src="assets/images/logo.png">
+
+<span>Cargoman Logistics</span>
+
+</a>
+
+<div class="menu-btn" onclick="toggleMenu()">
+☰
+</div>
+
+</header>
+
+<nav id="menu">
+
+<a href="index.html">Home</a>
+
+<a href="my-shipments.html">My Shipments</a>
+
+<a href="profile.html">Profile</a>
+
+<a href="contact.html">Support</a>
+
+<a href="#" onclick="logout()">Logout</a>
+
+</nav>
+
+<section class="hero">
+
+<h1>My Shipments</h1>
+
+<p>
+Track and manage all your shipments from one dashboard.
+</p>
+
+</section>
+
+<div class="container">
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search Tracking ID">
+
+</div>
+
+<div id="shipmentContainer">
+
+<!-- Shipment Cards Will Load Here -->
+  <footer>
+© 2025 Cargoman Logistics · All Rights Reserved
+</footer>
+
+<script>
+
+/* LOGIN CHECK */
+
+if(localStorage.getItem("loggedIn") !== "true"){
+
+alert("Please Login First");
+
+window.location.href =
+"login.html";
+
+}
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+document
+.getElementById("menu")
+.classList.toggle("show");
+
+}
+
+/* LOGOUT */
+
+function logout(){
+
+localStorage.removeItem(
+"loggedIn"
+);
+
+alert(
+"Logged Out Successfully"
+);
+
+window.location.href =
+"login.html";
+
+}
+
+/* LOAD SHIPMENTS */
+
+const shipments =
+JSON.parse(
+localStorage.getItem(
+"shipments"
+)
+) || [];
+
+const container =
+document.getElementById(
+"shipmentContainer"
+);
+
+/* DISPLAY SHIPMENTS */
+
+function displayShipments(data){
+
+container.innerHTML = "";
+
+if(data.length === 0){
+
+container.innerHTML = `
+
+<div class="shipment-card">
+
+<h3>No Shipments Found</h3>
+
+<p>
+No shipment records available.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+data.forEach(item => {
+
+let statusClass = "";
+
+if(
+item.status === "Delivered"
+){
+statusClass = "delivered";
+}
+
+if(
+item.status === "In Transit"
+){
+statusClass = "transit";
+}
+
+if(
+item.status === "Pending"
+){
+statusClass = "pending";
+}
+
+container.innerHTML += `
+
+<div class="shipment-card">
+
+<h3>
+📦 ${item.tracking}
+</h3>
+
+<p>
+<b>Customer:</b>
+${item.customer}
+</p>
+
+<p>
+<b>Route:</b>
+${item.from}
+→
+${item.to}
+</p>
+
+<p>
+<b>Booking Date:</b>
+${item.bookingDate}
+</p>
+
+<p>
+<b>Last Updated:</b>
+${item.updatedDate}
+</p>
+
+<span
+class="status ${statusClass}">
+${item.status}
+</span>
+
+<br>
+
+<a
+href="index.html"
+class="track-btn">
+
+Track Shipment
+
+</a>
+
+</div>
+
+`;
+
+});
+
+}
+
+/* SEARCH */
+
+document
+.getElementById(
+"searchInput"
+)
+.addEventListener(
+"input",
+function(){
+
+const value =
+this.value
+.toLowerCase();
+
+const filtered =
+shipments.filter(
+item =>
+
+item.tracking
+.toLowerCase()
+.includes(value)
+
+||
+
+item.customer
+.toLowerCase()
+.includes(value)
+
+);
+
+displayShipments(
+filtered
+);
+
+}
+);
+
+/* INITIAL LOAD */
+
+displayShipments(
+shipments
+);
+
+</script>
+
+</body>
+</html>
+
+</div>
+
+</div>
