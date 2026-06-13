@@ -1,16 +1,26 @@
-## Hi there 👋
+Hi, I'm Mallesh Gangula 👋
 
-<!--
-**cargoman-logistics/cargoman-logistics** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Welcome to my GitHub.
 
-Here are some ideas to get you started:
+About Me
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+I enjoy learning new things and improving myself every day.
+
+Currently exploring practical projects and building my skills through hands-on work.
+
+What I’m Working On
+
+📊 Excel Dashboard Projects
+📈 Power BI Reports and Analytics
+🗄 SQL Practice and Database Learning
+💻 Website and Login System Projects
+
+My Goal
+
+To learn continuously, improve my knowledge, and build useful real-world projects.
+
+Learning Mindset
+
+Every project teaches something new.
+
+Small steps today create bigger opportunities tomorrow.
